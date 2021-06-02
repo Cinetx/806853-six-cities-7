@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Денис Ванюков](https://up.htmlacademy.ru/react/7/user/806853).
-* Наставник: `Неизвестно`.
+* Наставник: [Виктор Кан](https://htmlacademy.ru/profile/viktorkan).
 
 ---
 
