@@ -1,9 +1,10 @@
 import React from 'react';
-import Card from '../../card/card';
 import PropTypes from 'prop-types';
+import CardList from '../../card-list/card-list';
+import offerPropsType from '../../../prop-types/offer';
 
 function MainScreen(props) {
-  const { cardCount } = props;
+  const { offers } = props;
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -92,9 +93,7 @@ function MainScreen(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {Array(cardCount)
-                  .fill()
-                  .map((i) => <Card key={i} />)}
+                <CardList offers={offers}/>
               </div>
             </section>
             <div className="cities__right-section">
@@ -108,7 +107,7 @@ function MainScreen(props) {
 }
 
 MainScreen.propTypes = {
-  cardCount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(offerPropsType).isRequired,
 };
 
 export default MainScreen;
