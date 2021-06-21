@@ -1,19 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 import RatingElement from '../wrapper/rating/rating';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import offerPropsType from '../../prop-types/offer';
+import PropTypes from 'prop-types';
 
-function Card({offers}) {
-  const {name, price, rating, type, isFavorite, isPremium} = offers;
-  const [hover, setHover] = useState(false);
-
-  const onMouseEnter = () => setHover(hover);
-  const onMouseLeave = () => setHover(hover);
+function Card(props) {
+  const {name, price, rating, type, isFavorite, isPremium, id} = props.offer;
+  const {onOfferMouseEnter, onOfferMouseLeave} = props;
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <article className="cities__place-card place-card" onMouseEnter={() => {onOfferMouseEnter(id);}} onMouseLeave={onOfferMouseLeave}>
       {isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
@@ -44,7 +42,9 @@ function Card({offers}) {
 }
 
 Card.propTypes = {
-  offers: offerPropsType,
+  offer: offerPropsType,
+  onOfferMouseEnter: PropTypes.func.isRequired,
+  onOfferMouseLeave: PropTypes.func.isRequired,
 };
 
 export default Card;

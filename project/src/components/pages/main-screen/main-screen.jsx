@@ -1,10 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import CardList from '../../card-list/card-list';
 import offerPropsType from '../../../prop-types/offer';
 
 function MainScreen(props) {
-  const { offers } = props;
+  const {offers} = props;
+
+  const [offerActive, setOfferActive] = useState();
+
+  const onOfferMouseEnter = (id) => {
+    setOfferActive(id);
+  };
+
+  const onOfferMouseLeave = () => {
+    setOfferActive(null);
+  };
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -12,7 +23,7 @@ function MainScreen(props) {
           <div className="header__wrapper">
             <div className="header__left">
               <a className="header__logo-link header__logo-link--active">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
+                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
               </a>
             </div>
             <nav className="header__nav">
@@ -93,7 +104,13 @@ function MainScreen(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardList offers={offers}/>
+                <CardList
+                  offers={offers}
+                  offersActive={offerActive}
+                  onOfferMouseEnter={onOfferMouseEnter}
+                  onOfferMouseLeave={onOfferMouseLeave}
+                  setOfferActive={setOfferActive}
+                />
               </div>
             </section>
             <div className="cities__right-section">
