@@ -1,16 +1,16 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import {PropTypes} from 'prop-types';
 
 function RatingElement(props) {
-  const { rating } = props;
+  const {rating} = props;
 
-  const ratingCssStyle = `${rating * 20} + %`;
+  const ratingCssStyle = `${rating * 20}%`;
 
   return (
-    <div className="place-card__stars rating__stars">
-      <span style={{ width: ratingCssStyle }}></span>
+    <>
+      <span style={{width: ratingCssStyle}}></span>
       <span className="visually-hidden">Rating</span>
-    </div>
+    </>
   );
 }
 

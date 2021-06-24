@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import CardList from '../../card-list/card-list';
 import offerPropsType from '../../../prop-types/offer';
 import Map from '../../map/map';
-import {CITY} from '../../../const';
+import cityPropsType from '../../../prop-types/city';
 
 function MainScreen(props) {
-  const {offers} = props;
+  const {offers, city} = props;
 
   const [offerActive, setOfferActive] = useState();
 
@@ -116,7 +116,9 @@ function MainScreen(props) {
               </div>
             </section>
             <div className="cities__right-section">
-              <Map city={CITY[0]} offers={offers}/>
+              <section className="cities__map map">
+                <Map city={city} offers={offers} offerActive={offerActive}/>
+              </section>
             </div>
           </div>
         </div>
@@ -127,6 +129,7 @@ function MainScreen(props) {
 
 MainScreen.propTypes = {
   offers: PropTypes.arrayOf(offerPropsType).isRequired,
+  city: cityPropsType,
 };
 
 export default MainScreen;

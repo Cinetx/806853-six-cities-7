@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import {AppRoute, CITY} from '../../const';
 
 import offerPropsType from '../../prop-types/offer';
 import reviewPropsType from '../../prop-types/reviews';
@@ -19,7 +19,7 @@ function App(props) {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.MAIN}>
-          <MainScreen offers={offers} />
+          <MainScreen offers={offers} city={CITY[0]}/>
         </Route>
 
         <Route exact path={AppRoute.FAVORITES}>
@@ -31,7 +31,7 @@ function App(props) {
         </Route>
 
         <Route exact path={AppRoute.ROOM}>
-          <RoomScreen reviews={reviews}/>
+          <RoomScreen offers={offers} reviews={reviews} city={CITY[0]}/>
         </Route>
 
         <Route>

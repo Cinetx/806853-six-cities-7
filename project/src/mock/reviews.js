@@ -6,7 +6,7 @@ export const REVIEWS = [
     rating: 4,
 
     user: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 2,
       isPro: true,
       name: 'Max',
@@ -20,7 +20,7 @@ export const REVIEWS = [
     rating: 3,
 
     user: {
-      avatarUrl: 'img/2.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 3,
       isPro: true,
       name: 'Maxi',
@@ -34,7 +34,7 @@ export const REVIEWS = [
     rating: 5,
 
     user: {
-      avatarUrl: 'img/3.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: 4,
       isPro: true,
       name: 'Axe',
