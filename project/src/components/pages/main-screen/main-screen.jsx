@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import CardList from '../../card-list/card-list';
 import offerPropsType from '../../../prop-types/offer';
+import Map from '../../map/map';
+import {CITY} from '../../../const';
 
 function MainScreen(props) {
   const {offers} = props;
@@ -114,7 +116,7 @@ function MainScreen(props) {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map city={CITY[0]} offers={offers}/>
             </div>
           </div>
         </div>
