@@ -30,7 +30,9 @@ function Card(props) {
           <ButtonFavorite isFavorite={isFavorite}/>
         </div>
         <div className="place-card__rating rating">
-          <RatingElement rating={rating}/>
+          <div className="place-card__stars rating__stars">
+            <RatingElement rating={rating}/>
+          </div>
         </div>
         <h2 className="place-card__name">
           <Link to={AppRoute.ROOM}>{name}</Link>
