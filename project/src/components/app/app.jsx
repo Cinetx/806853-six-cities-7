@@ -19,7 +19,7 @@ function App(props) {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.MAIN}>
-          <MainScreen offers={offers} city={CITY[0]}/>
+          <MainScreen cityList={CITY}/>
         </Route>
 
         <Route exact path={AppRoute.FAVORITES}>
@@ -30,9 +30,15 @@ function App(props) {
           <LoginScreen />
         </Route>
 
-        <Route exact path={AppRoute.ROOM}>
-          <RoomScreen offers={offers} reviews={reviews} city={CITY[0]}/>
-        </Route>
+        <Route
+          exact
+          path={AppRoute.ROOM}
+          render={({match})=>{
+            const offerId = match.params.id;
+            return <RoomScreen offerId={offerId} offers={offers} reviews={reviews} city={CITY[0]}/>;
+          }}
+        />
+
 
         <Route>
           <NotFoundScreen />

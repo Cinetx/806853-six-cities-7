@@ -6,6 +6,7 @@ function useMap(mapRef, city) {
   const [map, setMap] = useState(null);
 
   useEffect(() => {
+
     if (mapRef.current !== null && map === null) {
       const instance = leaflet.map(mapRef.current, {
         center: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 import RatingElement from '../wrapper/rating/rating';
-import {Link} from 'react-router-dom';
+import {Link, generatePath} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import offerPropsType from '../../prop-types/offer';
 import PropTypes from 'prop-types';
@@ -35,7 +35,7 @@ function Card(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.ROOM}>{name}</Link>
+          <Link to={{ pathname: generatePath(AppRoute.ROOM, { id }) }}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
