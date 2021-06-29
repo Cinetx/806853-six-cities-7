@@ -135,7 +135,7 @@ export const OFFERS = [
     goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
 
     city: {
-      name: 'Drezden',
+      name: 'Dusseldorf',
       location: {
         lat: 52.370216,
         lng: 4.895168,

@@ -11,9 +11,11 @@ import {filterOffers} from '../../../utils/filter';
 import cityPropsType from '../../../prop-types/city';
 import offerPropsType from '../../../prop-types/offer';
 import RatingElement from '../../wrapper/rating/rating';
+import {connect} from 'react-redux';
 
 function RoomScreen(props) {
   const {reviews, offers, city, offerId} = props;
+
   const offer = offers.find((item) => item.id.toString() === offerId.toString());
   const {name, rating, isPremium, isFavorite, type, bedrooms, maxAdults, price, goods, host} = offer;
 
@@ -175,4 +177,10 @@ RoomScreen.propTypes = {
   city: cityPropsType,
 };
 
-export default RoomScreen;
+
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
+
+export default connect(mapStateToProps, null)(RoomScreen);

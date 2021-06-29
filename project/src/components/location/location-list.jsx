@@ -8,7 +8,7 @@ function LocationList(props) {
 
   return (
     <ul className="locations__list tabs__list">
-      {cityList.map((city)=> (<LocationItem cityChange={cityChange} activeCity={activeCity} city={city.name} key={city.name}/>),
+      {cityList.map((city)=> (<LocationItem cityChange={cityChange} activeCity={activeCity} city={city} key={city.name}/>),
       )}
     </ul>
   );

@@ -5,6 +5,13 @@ export const AppRoute = {
   ROOM: '/offer/:id',
 };
 
+export const DEFAULT_CITY = {
+  name: 'Paris',
+  lat: 48.86471,
+  lng: 2.3,
+  zoom: 12,
+};
+
 export const CITY = [
   {
     name: 'Amsterdam',

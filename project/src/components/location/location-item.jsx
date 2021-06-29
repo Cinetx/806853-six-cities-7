@@ -4,8 +4,8 @@ import cityPropsType from '../../prop-types/city';
 
 function LocationItem(props) {
   const {city, activeCity, cityChange} = props;
-  const cityClassName = 'locations__item-link tabs__item';
 
+  const cityClassName = 'locations__item-link tabs__item';
   const cityActiveClassName = 'locations__item-link tabs__item tabs__item--active';
 
   return (
@@ -13,16 +13,16 @@ function LocationItem(props) {
       <a onClick={(evt) => {
         evt.preventDefault();
         cityChange(city);
-      }} className={(city.toLowerCase() === activeCity.name.toLowerCase()) ? cityActiveClassName : cityClassName} href="#"
+      }} className={(city.name.toLowerCase() === activeCity.name.toLowerCase()) ? cityActiveClassName : cityClassName} href="#"
       >
-        <span>{city}</span>
+        <span>{city.name}</span>
       </a>
     </li>
   );
 }
 
 LocationItem.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: cityPropsType,
   activeCity: cityPropsType,
   cityChange: PropTypes.func.isRequired,
 };

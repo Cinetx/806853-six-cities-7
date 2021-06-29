@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {filterOffers} from '../../utils/filter';
 import PropTypes from 'prop-types';
 import offerPropsType from '../../prop-types/offer';
 import cityPropsType from '../../prop-types/city';
@@ -28,7 +27,7 @@ function Map(props) {
     const markers = leaflet.layerGroup();
     if (map) {
       markers.addTo(map);
-      filterOffers(city.name, offers).forEach((offer) => {
+      offers.forEach((offer) => {
         const locationLat = offer.location.lat;
         const locationLng = offer.location.lng;
 

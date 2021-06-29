@@ -7,6 +7,7 @@ import offerPropsType from '../../prop-types/offer';
 import PropTypes from 'prop-types';
 
 function Card(props) {
+  // console.log(offer)
   const {name, price, rating, type, isFavorite, isPremium, id} = props.offer;
   const {onOfferMouseEnter, onOfferMouseLeave} = props;
 

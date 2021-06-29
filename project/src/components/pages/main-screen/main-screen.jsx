@@ -11,8 +11,7 @@ import {ActionCreator} from '../../../store/action';
 
 function MainScreen(props) {
   const {offers, city, cityList, cityChange} = props;
-  const filtredOffers = filterOffers(city.name, offers);
-  const offersNumber = filtredOffers.length;
+
   const [offerActive, setOfferActive] = useState();
 
   const onOfferMouseEnter = (id) => {
@@ -64,7 +63,7 @@ function MainScreen(props) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersNumber} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">Popular
@@ -81,7 +80,7 @@ function MainScreen(props) {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <CardList
-                  offers={filtredOffers}
+                  offers={offers}
                   offersActive={offerActive}
                   onOfferMouseEnter={onOfferMouseEnter}
                   onOfferMouseLeave={onOfferMouseLeave}
@@ -110,7 +109,7 @@ MainScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
   city: state.city,
-  offers: state.offers,
+  offers: filterOffers(state.city.name, state.offers),
 });
 
 const mapDispatchToProps = (dispatch) => ({

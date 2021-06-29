@@ -6,8 +6,6 @@ export const ActionType = {
 export const ActionCreator = {
   cityChange: (currentCity) => ({
     type: ActionType.CITY_CHANGE,
-    payload: {
-      name: currentCity,
-    },
+    payload: currentCity,
   }),
 };
