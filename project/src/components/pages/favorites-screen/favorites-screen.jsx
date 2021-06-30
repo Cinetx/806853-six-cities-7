@@ -3,6 +3,7 @@ import CardListFavorite from '../../card-favorite/card-list-favorite';
 import Logo from '../../logo/logo';
 import PropTypes from 'prop-types';
 import offerPropsType from '../../../prop-types/offer';
+import {connect} from 'react-redux';
 
 function FavoritesScreen(props) {
   const {offers} = props;
@@ -55,4 +56,9 @@ FavoritesScreen.propTypes = {
   offers: PropTypes.arrayOf(offerPropsType).isRequired,
 };
 
-export default FavoritesScreen;
+const mapStateToProps = (state) => ({
+  city: state.city,
+  offers: state.offers,
+});
+
+export default connect(mapStateToProps, null)(FavoritesScreen);

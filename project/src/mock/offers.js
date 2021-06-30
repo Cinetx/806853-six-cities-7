@@ -26,7 +26,7 @@ export const OFFERS = [
     host: {
       avatar: 'img/1.png',
       id: 3,
-      isPro: true,
+      isPro: false,
       name: 'Angelina',
     },
 
@@ -135,7 +135,7 @@ export const OFFERS = [
     goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
 
     city: {
-      name: 'Drezden',
+      name: 'Dusseldorf',
       location: {
         lat: 52.370216,
         lng: 4.895168,
@@ -155,6 +155,47 @@ export const OFFERS = [
     location: {
       lat: 52.3809553943508,
       lng: 4.939309666406198,
+      zoom: 8,
+    },
+  },
+
+
+  {
+    id: 1,
+    name: 'Beautiful luxurious apartment at great location',
+    rating: 4,
+    price: 120,
+    type: 'Apartment',
+    isFavorite: false,
+    isPremium: false,
+    previewImage: 'img/1.png',
+
+    bedrooms: 3,
+    maxAdults: 4,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
+
+    city: {
+      name: 'Paris',
+      location: {
+        lat: 48.86471,
+        lng: 2.3,
+        zoom: 10,
+      },
+    },
+
+    host: {
+      avatar: 'img/1.png',
+      id: 3,
+      isPro: false,
+      name: 'Angelina',
+    },
+
+    images: ['img/1.png', 'img/2.png'],
+
+    location: {
+      lat: 48.86471,
+      lng: 2.3,
       zoom: 8,
     },
   },

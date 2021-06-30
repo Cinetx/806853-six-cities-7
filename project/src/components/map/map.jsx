@@ -1,14 +1,12 @@
 import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {filterOffers} from '../../utils/filter';
 import PropTypes from 'prop-types';
 import offerPropsType from '../../prop-types/offer';
 import cityPropsType from '../../prop-types/city';
 import useMap from '../../mock/hooks/useMap/useMap';
 
 function Map(props) {
-
   const {city, offers, offerActive} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -26,8 +24,10 @@ function Map(props) {
   });
 
   useEffect(() => {
+    const markers = leaflet.layerGroup();
     if (map) {
-      filterOffers(city.name, offers).forEach((offer) => {
+      markers.addTo(map);
+      offers.forEach((offer) => {
         const locationLat = offer.location.lat;
         const locationLng = offer.location.lng;
 
@@ -40,10 +40,20 @@ function Map(props) {
             {
               icon: (offerActive === offer.id) ? iconActive : icon,
             },
-          ).addTo(map);
+          ).addTo(markers);
       });
+
+      map.flyTo(
+        [city.lat, city.lng],
+        city.zoom,
+      );
+
     }
-  }, [map, offers, offerActive]);
+    return () => {
+      markers.clearLayers();
+    };
+  }, [map, city, offers, offerActive]);
+
 
   return (
     <div ref={mapRef} id="map" style={{height: '100%'}}></div>
@@ -53,7 +63,7 @@ function Map(props) {
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropsType).isRequired,
   city: cityPropsType,
-  offerActive: PropTypes.number.isRequired,
+  offerActive: PropTypes.number,
 };
 
 export default Map;
