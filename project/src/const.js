@@ -12,6 +12,34 @@ export const DEFAULT_CITY = {
   zoom: 12,
 };
 
+export const DEFAULT_SORT = 'POPULAR';
+
+export const SORT_TYPE = {
+  POPULAR: 'POPULAR',
+  PRICE_LOW_TO_HIGH: 'PRICE_LOW_TO_HIGH',
+  PRICE_HIGH_TO_LOW: 'PRICE_HIGH_TO_LOW',
+  TOP_RATED: 'TOP_RATED',
+};
+
+export const SORT_BY = [
+  {
+    type: 'POPULAR',
+    markup: 'Popular',
+  },
+  {
+    markup: 'Price: low to high',
+    type: 'PRICE_LOW_TO_HIGH',
+  },
+  {
+    markup: 'Price: high to low',
+    type: 'PRICE_HIGH_TO_LOW',
+  },
+  {
+    type: 'TOP_RATED',
+    markup: 'Top rated first',
+  },
+];
+
 export const CITY = [
   {
     name: 'Amsterdam',
@@ -19,7 +47,6 @@ export const CITY = [
     lng: 4.9,
     zoom: 12,
   },
-
   {
     name: 'Paris',
     lat: 48.86471,
@@ -41,7 +68,7 @@ export const CITY = [
 
   {
     name: 'Hamburg',
-    lat: 	53.55108,
+    lat: 53.55108,
     lng: 9.9,
     zoom: 12,
   },

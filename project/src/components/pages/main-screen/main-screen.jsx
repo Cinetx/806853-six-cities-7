@@ -5,13 +5,13 @@ import offerPropsType from '../../../prop-types/offer';
 import Map from '../../map/map';
 import cityPropsType from '../../../prop-types/city';
 import LocationList from '../../location/location-list';
-import {filterOffers} from '../../../utils/filter';
+import {filterOffers, sortOffers} from '../../../utils/filter';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../../store/action';
+import Sort from '../../sort/sort';
 
 function MainScreen(props) {
-  const {offers, city, cityList, cityChange} = props;
-
+  const {offers, city, cityList, cityChange, sort} = props;
   const [offerActive, setOfferActive] = useState();
 
   const onOfferMouseEnter = (id) => {
@@ -64,20 +64,7 @@ function MainScreen(props) {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length} places to stay in Amsterdam</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-              </form>
+              <Sort sortState={sort} />
               <div className="cities__places-list places__list tabs__content">
                 <CardList
                   offers={offers}
@@ -105,16 +92,18 @@ MainScreen.propTypes = {
   cityList: PropTypes.arrayOf(cityPropsType).isRequired,
   city: cityPropsType,
   cityChange: PropTypes.func.isRequired,
+  sort: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   city: state.city,
-  offers: filterOffers(state.city.name, state.offers),
+  sort: state.sort,
+  offers: sortOffers(state.sort, filterOffers(state.city.name, state.offers)),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  cityChange(city, offers) {
-    dispatch(ActionCreator.cityChange(city, offers));
+  cityChange(city) {
+    dispatch(ActionCreator.cityChange(city));
   },
 });
 
