@@ -12,31 +12,27 @@ export const DEFAULT_CITY = {
   zoom: 12,
 };
 
-export const DEFAULT_SORT = 'POPULAR';
+export const DEFAULT_SORT = 'Popular';
 
 export const SORT_TYPE = {
-  POPULAR: 'POPULAR',
-  PRICE_LOW_TO_HIGH: 'PRICE_LOW_TO_HIGH',
-  PRICE_HIGH_TO_LOW: 'PRICE_HIGH_TO_LOW',
-  TOP_RATED: 'TOP_RATED',
+  POPULAR: 'Popular',
+  PRICE_LOW_TO_HIGH: 'Price: low to high',
+  PRICE_HIGH_TO_LOW: 'Price: high to low',
+  TOP_RATED: 'Top rated first',
 };
 
 export const SORT_BY = [
   {
-    type: 'POPULAR',
-    markup: 'Popular',
+    type: 'Popular',
   },
   {
-    markup: 'Price: low to high',
-    type: 'PRICE_LOW_TO_HIGH',
+    type: 'Price: low to high',
   },
   {
-    markup: 'Price: high to low',
-    type: 'PRICE_HIGH_TO_LOW',
+    type: 'Price: high to low',
   },
   {
-    type: 'TOP_RATED',
-    markup: 'Top rated first',
+    type: 'Top rated first',
   },
 ];
 

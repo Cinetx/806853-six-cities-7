@@ -11,8 +11,9 @@ import {ActionCreator} from '../../../store/action';
 import Sort from '../../sort/sort';
 
 function MainScreen(props) {
-  const {offers, city, cityList, cityChange, sort} = props;
-  const [offerActive, setOfferActive] = useState();
+  const {offers, city, cityList, cityChange} = props;
+
+  const [offerActive, setOfferActive] = useState(null);
 
   const onOfferMouseEnter = (id) => {
     setOfferActive(id);
@@ -64,11 +65,10 @@ function MainScreen(props) {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length} places to stay in Amsterdam</b>
-              <Sort sortState={sort} />
+              <Sort />
               <div className="cities__places-list places__list tabs__content">
                 <CardList
                   offers={offers}
-                  offersActive={offerActive}
                   onOfferMouseEnter={onOfferMouseEnter}
                   onOfferMouseLeave={onOfferMouseLeave}
                   setOfferActive={setOfferActive}
@@ -92,13 +92,12 @@ MainScreen.propTypes = {
   cityList: PropTypes.arrayOf(cityPropsType).isRequired,
   city: cityPropsType,
   cityChange: PropTypes.func.isRequired,
-  sort: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   city: state.city,
-  sort: state.sort,
-  offers: sortOffers(state.sort, filterOffers(state.city.name, state.offers)),
+  sortType: state.sort,
+  offers: sortOffers(state.sortType, filterOffers(state.city.name, state.offers)),
 });
 
 const mapDispatchToProps = (dispatch) => ({

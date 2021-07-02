@@ -5,7 +5,8 @@ import {ActionType} from './action';
 const initialState = {
   city: DEFAULT_CITY,
   offers: OFFERS,
-  sort: DEFAULT_SORT,
+  sortType: DEFAULT_SORT,
+  sortMenuIsOpen: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,12 +16,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         city: action.payload,
+        sortMenuIsOpen: false,
       };
 
-    case ActionType.SORT_CHANGE:
+    case ActionType.SORT_TYPE_CHANGE:
       return {
         ...state,
-        sort: action.payload,
+        sortType: action.payload,
+      };
+
+    case ActionType.SORT_MENU_OPEN:
+      return {
+        ...state,
+        sortMenuIsOpen: action.payload,
       };
 
     default:

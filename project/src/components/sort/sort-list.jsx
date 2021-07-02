@@ -4,21 +4,21 @@ import SortItem from './sort-item';
 import PropTypes from 'prop-types';
 
 function SortList(props) {
-  const {menuOpen, sortState, setSortStateActive, setMenuOpen} = props;
+  const {sortMenuIsOpen, sortType, sortMenuOpen, sortTypeChange} = props;
 
   const menuClass = 'places__options places__options--custom';
   const menuClassOpen = 'places__options places__options--custom places__options--opened';
 
   return (
-    <ul className={menuOpen ? menuClassOpen : menuClass}>
+    <ul className={sortMenuIsOpen ? menuClassOpen : menuClass}>
       {SORT_BY.map((sort) =>
         (
           <SortItem
-            setMenuOpen={setMenuOpen}
-            setSortStateActive={setSortStateActive}
-            sortState={sortState}
+            sortType={sortType}
+            sortTypeChange={sortTypeChange}
+            sortMenuOpen={sortMenuOpen}
             sort={sort}
-            key={sort.markup}
+            key={sort.type}
           />
         ),
       )}
@@ -27,10 +27,10 @@ function SortList(props) {
 }
 
 SortList.propTypes = {
-  sortState: PropTypes.string.isRequired,
-  setSortStateActive: PropTypes.func.isRequired,
-  setMenuOpen: PropTypes.func.isRequired,
-  menuOpen: PropTypes.bool,
+  sortType: PropTypes.string.isRequired,
+  sortTypeChange: PropTypes.func.isRequired,
+  sortMenuIsOpen: PropTypes.bool.isRequired,
+  sortMenuOpen: PropTypes.func.isRequired,
 };
 
 export default SortList;

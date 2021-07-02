@@ -1,7 +1,8 @@
 export const ActionType = {
   CITY_CHANGE: 'CITY_CHANGE',
   GET_OFFERS: 'GET_OFFERS',
-  SORT_CHANGE: 'SORT_CHANGE',
+  SORT_TYPE_CHANGE: 'SORT_CHANGE',
+  SORT_MENU_OPEN: 'SORT_MENU_OPEN',
 };
 
 export const ActionCreator = {
@@ -10,8 +11,13 @@ export const ActionCreator = {
     payload: currentCity,
   }),
 
-  sortChange: (sortType) => ({
-    type: ActionType.SORT_CHANGE,
+  sortTypeChange: (sortType) => ({
+    type: ActionType.SORT_TYPE_CHANGE,
     payload: sortType,
+  }),
+
+  sortMenuOpen: (menu) => ({
+    type: ActionType.SORT_MENU_OPEN,
+    payload: menu,
   }),
 };
