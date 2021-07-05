@@ -2,16 +2,19 @@ import React from 'react';
 import RatingElement from '../wrapper/rating/rating';
 import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 import offerPropsType from '../../prop-types/offer';
+import {generatePath, Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 function NearPlace({offer}) {
 
-  const {name, price, rating, isFavorite, type} = offer;
+  const {title, price, rating, isFavorite, type, previewImage, id} = offer;
+
 
   return (
     <article className="near-places__card place-card">
       <div className="near-places__image-wrapper place-card__image-wrapper">
         <a href="/#">
-          <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">
@@ -29,7 +32,7 @@ function NearPlace({offer}) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/#">{name}</a>
+          <Link to={{ pathname: generatePath(AppRoute.ROOM, { id }) }}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

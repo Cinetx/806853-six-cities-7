@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CardList from '../../card-list/card-list';
 import offerPropsType from '../../../prop-types/offer';
@@ -11,16 +11,15 @@ import {ActionCreator} from '../../../store/action';
 import Sort from '../../sort/sort';
 
 function MainScreen(props) {
-  const {offers, city, cityList, cityChange} = props;
+  const {offers, city, cityList, cityChange, activeOffer, getActiveOffer} = props;
 
-  const [offerActive, setOfferActive] = useState(null);
 
   const onOfferMouseEnter = (id) => {
-    setOfferActive(id);
+    getActiveOffer(id);
   };
 
   const onOfferMouseLeave = () => {
-    setOfferActive(null);
+    getActiveOffer(null);
   };
 
   return (
@@ -71,13 +70,12 @@ function MainScreen(props) {
                   offers={offers}
                   onOfferMouseEnter={onOfferMouseEnter}
                   onOfferMouseLeave={onOfferMouseLeave}
-                  setOfferActive={setOfferActive}
                 />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={city} offers={offers} offerActive={offerActive}/>
+                <Map city={city} offers={offers} activeOffer={activeOffer}/>
               </section>
             </div>
           </div>
@@ -92,18 +90,26 @@ MainScreen.propTypes = {
   cityList: PropTypes.arrayOf(cityPropsType).isRequired,
   city: cityPropsType,
   cityChange: PropTypes.func.isRequired,
+  activeOffer: PropTypes.number,
+  getActiveOffer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   city: state.city,
   sortType: state.sort,
   offers: sortOffers(state.sortType, filterOffers(state.city.name, state.offers)),
+  activeOffer: state.activeOffer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   cityChange(city) {
     dispatch(ActionCreator.cityChange(city));
   },
+
+  getActiveOffer(id) {
+    dispatch(ActionCreator.getActiveOffer(id));
+  },
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

@@ -12,12 +12,15 @@ import cityPropsType from '../../../prop-types/city';
 import offerPropsType from '../../../prop-types/offer';
 import RatingElement from '../../wrapper/rating/rating';
 import {connect} from 'react-redux';
+import OfferImagesList from '../../offer-images-list/offer-images-list';
+
 
 function RoomScreen(props) {
   const {reviews, offers, city, offerId} = props;
 
   const offer = offers.find((item) => item.id.toString() === offerId.toString());
-  const {name, rating, isPremium, isFavorite, type, bedrooms, maxAdults, price, goods, host} = offer;
+  const {title, rating, isPremium, isFavorite, type, bedrooms, maxAdults, price, goods, host, images} = offer;
+  const { avatarUrl } = host;
 
   const favoriteButtonClassName = 'property__bookmark-button button';
   const favoriteButtonClassNameActive = 'property__bookmark-button property__bookmark-button--active button';
@@ -56,26 +59,7 @@ function RoomScreen(props) {
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
-            <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-            </div>
+            <OfferImagesList images={images}/>
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
@@ -85,7 +69,7 @@ function RoomScreen(props) {
                 </div> : ''}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {name}
+                  {title}
                 </h1>
                 <button className={isFavorite ? favoriteButtonClassNameActive : favoriteButtonClassName} type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
@@ -129,7 +113,7 @@ function RoomScreen(props) {
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className={host.isPro ? avatarClassProUser : avatarClass}>
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
+                    <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="property__user-name">
                     {host.name}
@@ -152,7 +136,6 @@ function RoomScreen(props) {
               </div>
               <section className="property__reviews reviews">
                 <ReviewsList reviews={reviews}/>
-
                 <ReviewForm/>
               </section>
             </div>

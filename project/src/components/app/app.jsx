@@ -8,9 +8,18 @@ import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
 import LoginScreen from '../pages/login-screen/login-screen';
 import RoomScreen from '../pages/room-screen/room-screen';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
+import {connect} from 'react-redux';
+import Spinner from '../wrapper/spinner/spinner';
 
 function App(props) {
-  const { reviews } = props;
+  const {isDataLoaded, reviews} = props;
+
+  if (!isDataLoaded) {
+    return (
+      <Spinner />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
@@ -46,6 +55,12 @@ function App(props) {
 
 App.propTypes = {
   reviews: PropTypes.arrayOf(reviewPropsType).isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+  isDataLoaded: state.isDataLoaded,
+});
+
+export default connect(mapStateToProps, null)(App);
