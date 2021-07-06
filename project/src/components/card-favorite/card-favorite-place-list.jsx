@@ -7,8 +7,8 @@ function CardFavoritePlaceList(props) {
   const {offers} = props;
   return (
     <div className="favorites__places">
-      {offers.map((offer) => <CardFavorite key={offer.id} offer={offer}/>,
-      )}
+
+      {offers.filter((offer)=> offer.isFavorite).map((offer) => <CardFavorite key={offer.id} offer={offer}/>)}
     </div>
   );
 }

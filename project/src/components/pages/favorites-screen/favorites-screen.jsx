@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CardListFavorite from '../../card-favorite/card-list-favorite';
 import Logo from '../../logo/logo';
 import PropTypes from 'prop-types';
 import offerPropsType from '../../../prop-types/offer';
 import {connect} from 'react-redux';
+import {fetchOffersList} from '../../../store/api-action';
 
 function FavoritesScreen(props) {
-  const {offers} = props;
+  const {offers, getOffersList, isDataLoaded} = props;
+
+  useEffect(()=>{
+    getOffersList();
+  },[isDataLoaded]);
+
   return (
     <div className="page">
       <header className="header">
@@ -54,11 +60,22 @@ function FavoritesScreen(props) {
 
 FavoritesScreen.propTypes = {
   offers: PropTypes.arrayOf(offerPropsType).isRequired,
+  getOffersList: PropTypes.func.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   city: state.city,
   offers: state.offers,
+  isDataLoaded: state.isDataLoaded,
 });
 
-export default connect(mapStateToProps, null)(FavoritesScreen);
+const mapDispatchToProps = (dispatch) => ({
+
+  getOffersList(){
+    dispatch(fetchOffersList());
+  },
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesScreen);

@@ -2,7 +2,6 @@ import {ActionCreator} from './action';
 import {APIRoute, AuthorizationStatus} from '../const';
 import {adaptToClient} from '../utils/utils';
 
-
 export const fetchOffersList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(ActionCreator.loadOffers(data.slice().map((offer)=> adaptToClient(offer)))))
