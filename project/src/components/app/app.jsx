@@ -10,7 +10,8 @@ import RoomScreen from '../pages/room-screen/room-screen';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 
 function App(props) {
-  const { reviews } = props;
+  const {reviews} = props;
+
   return (
     <BrowserRouter>
       <Switch>

@@ -7,9 +7,9 @@ import offerPropsType from '../../prop-types/offer';
 import PropTypes from 'prop-types';
 
 function Card(props) {
-  // console.log(offer)
-  const {name, price, rating, type, isFavorite, isPremium, id} = props.offer;
-  const {onOfferMouseEnter, onOfferMouseLeave} = props;
+
+  const {onOfferMouseEnter, onOfferMouseLeave, offer} = props;
+  const {title, price, rating, type, isFavorite, isPremium, id, previewImage} = offer;
 
   return (
     <article className="cities__place-card place-card" onMouseEnter={() => {onOfferMouseEnter(id);}} onMouseLeave={onOfferMouseLeave}>
@@ -19,7 +19,7 @@ function Card(props) {
         </div> : ''}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="/#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">
@@ -36,7 +36,7 @@ function Card(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={{ pathname: generatePath(AppRoute.ROOM, { id }) }}>{name}</Link>
+          <Link to={{ pathname: generatePath(AppRoute.ROOM, { id }) }}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

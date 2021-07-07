@@ -7,7 +7,7 @@ import cityPropsType from '../../prop-types/city';
 import useMap from '../../mock/hooks/useMap/useMap';
 
 function Map(props) {
-  const {city, offers, offerActive} = props;
+  const {city, offers, activeOffer} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -28,8 +28,8 @@ function Map(props) {
     if (map) {
       markers.addTo(map);
       offers.forEach((offer) => {
-        const locationLat = offer.location.lat;
-        const locationLng = offer.location.lng;
+        const locationLat = offer.location.latitude;
+        const locationLng = offer.location.longitude;
 
         leaflet
           .marker(
@@ -38,7 +38,7 @@ function Map(props) {
               lng: locationLng,
             },
             {
-              icon: (offerActive === offer.id) ? iconActive : icon,
+              icon: (activeOffer === offer.id) ? iconActive : icon,
             },
           ).addTo(markers);
       });
@@ -52,7 +52,7 @@ function Map(props) {
     return () => {
       markers.clearLayers();
     };
-  }, [map, city, offers, offerActive]);
+  }, [map, city, offers, activeOffer]);
 
 
   return (
@@ -63,7 +63,7 @@ function Map(props) {
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropsType).isRequired,
   city: cityPropsType,
-  offerActive: PropTypes.number,
+  activeOffer: PropTypes.number,
 };
 
 export default Map;
