@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import {createAPI} from './services/api';
 import {ActionCreator} from './store/action';
 import {AuthorizationStatus} from './const';
+import {checkAuth} from './store/api-action';
 
 const api = createAPI(()=> store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)));
 
@@ -18,6 +19,8 @@ export const store = createStore(
   composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)),
   ));
+
+store.dispatch(checkAuth());
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,3 +31,4 @@ ReactDOM.render(
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));
+

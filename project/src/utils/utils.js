@@ -1,3 +1,5 @@
+import {AuthorizationStatus} from '../const';
+
 export const adaptToClient = (offer) => {
   const adaptedOffer = Object.assign({}, offer,{
     id: offer.id,
@@ -47,3 +49,5 @@ export const adaptToClient = (offer) => {
 
   return adaptedOffer;
 };
+
+export const isCheckedAuth = (authorizationStatus) => authorizationStatus === AuthorizationStatus.UNKNOWN;

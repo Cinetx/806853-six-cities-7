@@ -6,6 +6,7 @@ export const ActionType = {
   ACTIVE_OFFER: 'ACTIVE_OFFER',
   LOAD_OFFERS: 'data/loadOffers',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
+  LOGIN: 'LOGIN',
   LOGOUT: 'user/logout',
 };
 
@@ -38,6 +39,11 @@ export const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
+  }),
+
+  login: (email) => ({
+    type: ActionType.LOGIN,
+    payload: email,
   }),
 
   logout: () => ({
