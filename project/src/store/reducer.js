@@ -9,6 +9,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false,
   activeOffer: null,
+  userEmail: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +52,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         authorizationStatus: action.payload,
       };
+
+    case ActionType.LOGIN:
+      return {
+        ...state,
+        userEmail: action.payload,
+      };
+
     case ActionType.LOGOUT:
       return {
         ...state,

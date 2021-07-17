@@ -1,14 +1,31 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import Logo from '../../logo/logo';
+import {connect} from 'react-redux';
+import {login} from '../../../store/api-action';
+import PropTypes from 'prop-types';
 
-function LoginScreen() {
+function LoginScreen(props) {
+  const {onSubmit, onClickSubmit} = props;
+
+  const loginRef = useRef();
+  const passwordRef = useRef();
+
+  const handlerSubmit = (evt) => {
+    evt.preventDefault();
+    onClickSubmit();
+    onSubmit({
+      login: loginRef.current.value,
+      password: passwordRef.current.value,
+    });
+  };
+
   return (
     <div className="page page--gray page--login">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Logo />
+              <Logo/>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -29,16 +46,40 @@ function LoginScreen() {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post">
+            <form
+              onSubmit={handlerSubmit}
+              className="login__form form"
+              action="#"
+              method="post"
+            >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input" type="email" name="email" placeholder="Email" required="" />
+                <input
+                  ref={loginRef}
+                  className="login__input form__input"
+                  type="email" name="email"
+                  placeholder="Email"
+                  required
+                />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" placeholder="Password" required="" />
+                <input
+                  ref={passwordRef}
+                  className="login__input form__input"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required=""
+                  pattern="^[^\s()-]*$"
+                />
               </div>
-              <button className="login__submit form__submit button" type="submit">Sign in</button>
+              <button
+                className="login__submit form__submit button"
+                type="submit"
+              >
+                Sign in
+              </button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
@@ -54,4 +95,15 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+LoginScreen.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onClickSubmit: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(authData) {
+    dispatch(login(authData));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(LoginScreen);

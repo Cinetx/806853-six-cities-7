@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../card/card';
 import offerPropsType from '../../prop-types/offer';
+import withLoad from '../../hoc/withLoad/withLoad';
 
 function CardList(props) {
-  const {offers, onOfferMouseEnter, onOfferMouseLeave} = props;
+  const { offers, onOfferMouseEnter, onOfferMouseLeave} = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -22,5 +23,5 @@ CardList.propTypes = {
   onOfferMouseLeave: PropTypes.func.isRequired,
 };
 
-export default CardList;
+export default withLoad(CardList);
 
