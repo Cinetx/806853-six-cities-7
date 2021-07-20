@@ -5,14 +5,13 @@ import {login} from '../../../store/api-action';
 import PropTypes from 'prop-types';
 
 function LoginScreen(props) {
-  const {onSubmit, onClickSubmit} = props;
+  const {onSubmit} = props;
 
   const loginRef = useRef();
   const passwordRef = useRef();
 
   const handlerSubmit = (evt) => {
     evt.preventDefault();
-    onClickSubmit();
     onSubmit({
       login: loginRef.current.value,
       password: passwordRef.current.value,
@@ -97,7 +96,6 @@ function LoginScreen(props) {
 
 LoginScreen.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  onClickSubmit: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

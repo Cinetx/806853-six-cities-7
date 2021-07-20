@@ -3,8 +3,9 @@ import ReviewsItem from './reviews-item';
 import PropTypes from 'prop-types';
 import reviewsPropsType from '../../prop-types/reviews';
 
-function ReviewsList({reviews}) {
 
+function ReviewsList(props) {
+  const {reviews} = props;
   const reviewsNumber = reviews.length;
 
   return (

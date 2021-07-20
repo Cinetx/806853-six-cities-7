@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
 export default PropTypes.shape({
-  type: PropTypes.string.isRequired,
+  rating: PropTypes.number,
+  comment: PropTypes.string,
 });

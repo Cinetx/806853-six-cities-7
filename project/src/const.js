@@ -3,6 +3,7 @@ export const AppRoute = {
   LOGIN: '/login',
   FAVORITES: '/favorites',
   ROOM: '/offer/:id',
+  NOT_FOUND: '/not-found',
 };
 
 export const AuthorizationStatus = {
@@ -12,19 +13,21 @@ export const AuthorizationStatus = {
 };
 
 export const APIRoute = {
-  OFFERS: '/hotels',
-  NEARBY: '/hotels/:hotel_id/nearby',
+  OFFERS: '/hotels/',
+  NEARBY: '/nearby',
   FAVORITE: '/favorite',
-  REVIEWS: '/comments',
+  REVIEWS: '/comments/',
   LOGIN: '/login',
   LOGOUT: '/logout',
 };
 
 export const DEFAULT_CITY = {
   name: 'Paris',
-  lat: 48.86471,
-  lng: 2.3,
-  zoom: 12,
+  location: {
+    lat: 48.86471,
+    lng: 2.3,
+    zoom: 12,
+  },
 };
 
 export const DEFAULT_SORT = 'Popular';
@@ -54,39 +57,51 @@ export const SORT_BY = [
 export const CITY = [
   {
     name: 'Amsterdam',
-    lat: 52.37454,
-    lng: 4.897976,
-    zoom: 13,
+    location: {
+      lat: 52.37454,
+      lng: 4.897976,
+      zoom: 13,
+    },
   },
   {
     name: 'Paris',
-    lat: 48.85661,
-    lng: 2.351499,
-    zoom: 13,
+    location: {
+      lat: 48.85661,
+      lng: 2.351499,
+      zoom: 13,
+    },
   },
   {
     name: 'Cologne',
-    lat: 50.938361,
-    lng: 6.959974,
-    zoom: 13,
+    location: {
+      lat: 50.938361,
+      lng: 6.959974,
+      zoom: 13,
+    },
   },
   {
     name: 'Brussels',
-    lat: 50.846557,
-    lng: 4.351697,
-    zoom: 13,
+    location: {
+      lat: 50.846557,
+      lng: 4.351697,
+      zoom: 13,
+    },
   },
 
   {
     name: 'Hamburg',
-    lat: 53.550341,
-    lng: 10.000654,
-    zoom: 13,
+    location: {
+      lat: 53.550341,
+      lng: 10.000654,
+      zoom: 13,
+    },
   },
   {
     name: 'Dusseldorf',
-    lat: 51.225402,
-    lng: 6.776314,
-    zoom: 13,
+    location: {
+      lat: 51.225402,
+      lng: 6.776314,
+      zoom: 13,
+    },
   },
 ];

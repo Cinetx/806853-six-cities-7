@@ -1,7 +1,7 @@
 import {AuthorizationStatus} from '../const';
 
 export const adaptToClient = (offer) => {
-  const adaptedOffer = Object.assign({}, offer,{
+  const adaptedOffer = Object.assign({}, offer, {
     id: offer.id,
     title: offer.title,
     rating: offer.rating,
@@ -19,8 +19,8 @@ export const adaptToClient = (offer) => {
     city: {
       name: offer.city.name,
       location: {
-        latitude: offer.city.location.latitude,
-        longitude: offer.city.location.longitude,
+        lat: offer.city.location.latitude,
+        lng: offer.city.location.longitude,
         zoom: offer.city.location.zoom,
       },
     },
@@ -35,8 +35,8 @@ export const adaptToClient = (offer) => {
     images: offer.images,
 
     location: {
-      latitude: offer.location.latitude,
-      longitude: offer.location.longitude,
+      lat: offer.location.latitude,
+      lng: offer.location.longitude,
       zoom: offer.location.zoom,
     },
 
@@ -49,5 +49,22 @@ export const adaptToClient = (offer) => {
 
   return adaptedOffer;
 };
+
+
+export const adaptToClientReviews = (review) =>
+  (Object.assign({}, review, {
+
+    id: review.id,
+    date: review.date,
+    comment: review.comment,
+    rating: review.rating,
+
+    user: {
+      avatarUrl: review.user.avatar_url,
+      id: review.user.id,
+      isPro: review.user.is_pro,
+      name: review.user.name,
+    },
+  }));
 
 export const isCheckedAuth = (authorizationStatus) => authorizationStatus === AuthorizationStatus.UNKNOWN;

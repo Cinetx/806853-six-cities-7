@@ -4,10 +4,14 @@ export const ActionType = {
   SORT_TYPE_CHANGE: 'SORT_CHANGE',
   SORT_MENU_OPEN: 'SORT_MENU_OPEN',
   ACTIVE_OFFER: 'ACTIVE_OFFER',
+  SELECT_OFFER: 'SELECT_OFFER',
   LOAD_OFFERS: 'data/loadOffers',
+  LOAD_REVIEWS: 'data/loadReviews',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGIN: 'LOGIN',
   LOGOUT: 'user/logout',
+  REDIRECT_TO_ROUTE: 'REDIRECT_TO_ROUTE',
+  COMMENT_SEND: 'COMMENT_CHANGE',
 };
 
 export const ActionCreator = {
@@ -28,12 +32,22 @@ export const ActionCreator = {
 
   getActiveOffer: (id) => ({
     type: ActionType.ACTIVE_OFFER,
-    payload: id,
+    payload: Number(id),
+  }),
+
+  selectOffer: (offer) => ({
+    type: ActionType.SELECT_OFFER,
+    payload: offer,
   }),
 
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: offers,
+  }),
+
+  loadReviews: (reviews) => ({
+    type: ActionType.LOAD_REVIEWS,
+    payload: reviews,
   }),
 
   requireAuthorization: (status) => ({
@@ -48,5 +62,15 @@ export const ActionCreator = {
 
   logout: () => ({
     type: ActionType.LOGOUT,
+  }),
+
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  }),
+
+  commentSend: (comment) => ({
+    type: ActionType.COMMENT_SEND,
+    payload: comment,
   }),
 };

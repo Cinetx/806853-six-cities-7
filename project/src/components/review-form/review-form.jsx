@@ -1,14 +1,23 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
+import {connect} from 'react-redux';
+import {sendMessage} from '../../store/api-action';
+import {ActionCreator} from '../../store/action';
+import PropTypes from 'prop-types';
 
-function ReviewForm() {
+function ReviewForm({id, submitReview}) {
 
   const [comment, setComment] = useState({
     review: '',
     rating: 0,
   });
 
+  const textAreaRef = useRef();
+
   const onSubmitFrom = (evt) => {
     evt.preventDefault();
+    submitReview(comment.review, comment.rating, id);
+    evt.target.reset();
+    textAreaRef.current.value = '';
   };
 
   const onChange = (evt) => {
@@ -56,7 +65,16 @@ function ReviewForm() {
           </svg>
         </label>
       </div>
-      <textarea onChange={onChange} value={comment.review} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+      <textarea
+        onChange={onChange}
+        ref={textAreaRef}
+        value={comment.review}
+        className="reviews__textarea form__textarea"
+        id="review"
+        name="review"
+        placeholder="Tell how was your stay, what you like and what can be improved"
+      >
+      </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay
@@ -68,4 +86,18 @@ function ReviewForm() {
   );
 }
 
-export default ReviewForm;
+ReviewForm.propTypes = {
+  id: PropTypes.number.isRequired,
+  submitReview: PropTypes.func.isRequired,
+};
+
+
+const mapDispatchToProps = (dispatch) => ({
+  submitReview(comment, rating, id) {
+    dispatch(sendMessage(comment, rating, id));
+    dispatch(ActionCreator.commentSend({comment, rating}));
+  },
+});
+
+
+export default connect(null, mapDispatchToProps)(ReviewForm);

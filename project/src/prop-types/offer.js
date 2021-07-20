@@ -18,8 +18,8 @@ export default PropTypes.shape({
   city: PropTypes.shape({
     name: PropTypes.string.isRequired,
     location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired,
       zoom: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
@@ -34,8 +34,8 @@ export default PropTypes.shape({
   images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 
   location: PropTypes.shape({
-    latitude: PropTypes.number.isRequired,
-    longitude: PropTypes.number.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
     zoom: PropTypes.number.isRequired,
   }).isRequired,
 });
