@@ -28,8 +28,8 @@ function Map(props) {
     if (map) {
       markers.addTo(map);
       offers.forEach((offer) => {
-        const locationLat = offer.location.latitude;
-        const locationLng = offer.location.longitude;
+        const locationLat = offer.location.lat;
+        const locationLng = offer.location.lng;
 
         leaflet
           .marker(
@@ -44,8 +44,8 @@ function Map(props) {
       });
 
       map.flyTo(
-        [city.lat, city.lng],
-        city.zoom,
+        [city.location.lat, city.location.lng],
+        city.location.zoom,
       );
 
     }

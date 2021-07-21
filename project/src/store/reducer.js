@@ -4,12 +4,19 @@ import {ActionType} from './action';
 const initialState = {
   city: DEFAULT_CITY,
   offers: [],
+  reviews: [],
+  comment: {
+    comment: '',
+    rating: null,
+  },
   sortType: DEFAULT_SORT,
   sortMenuIsOpen: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false,
+  isDataOfferLoaded: false,
   activeOffer: null,
   userEmail: '',
+  selectedOffer: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,15 +42,30 @@ const reducer = (state = initialState, action) => {
       };
 
     case ActionType.ACTIVE_OFFER:
+
       return {
         ...state,
         activeOffer: action.payload,
+      };
+
+    case ActionType.SELECT_OFFER:
+      return {
+        ...state,
+        selectedOffer: action.payload,
+        isDataOfferLoaded: true,
       };
 
     case ActionType.LOAD_OFFERS:
       return {
         ...state,
         offers: action.payload,
+        isDataLoaded: true,
+      };
+
+    case ActionType.LOAD_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload,
         isDataLoaded: true,
       };
 
@@ -63,6 +85,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         authorizationStatus: AuthorizationStatus.NO_AUTH,
+      };
+
+    case ActionType.COMMENT_SEND:
+      return {
+        ...state,
+        comment: action.payload,
       };
 
     default:

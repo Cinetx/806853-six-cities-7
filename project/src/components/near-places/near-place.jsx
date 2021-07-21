@@ -2,8 +2,7 @@ import React from 'react';
 import RatingElement from '../wrapper/rating/rating';
 import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 import offerPropsType from '../../prop-types/offer';
-import {generatePath, Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import PlaceName from '../wrapper/place-name/place-name';
 
 function NearPlace({offer}) {
 
@@ -31,9 +30,7 @@ function NearPlace({offer}) {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
-          <Link to={{ pathname: generatePath(AppRoute.ROOM, { id }) }}>{title}</Link>
-        </h2>
+        <PlaceName id={id} title={title} />
         <p className="place-card__type">{type}</p>
       </div>
     </article>

@@ -1,10 +1,9 @@
 import React from 'react';
 import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 import RatingElement from '../wrapper/rating/rating';
-import {Link, generatePath} from 'react-router-dom';
-import {AppRoute} from '../../const';
 import offerPropsType from '../../prop-types/offer';
 import PropTypes from 'prop-types';
+import PlaceName from '../wrapper/place-name/place-name';
 
 function Card(props) {
 
@@ -35,9 +34,7 @@ function Card(props) {
             <RatingElement rating={rating}/>
           </div>
         </div>
-        <h2 className="place-card__name">
-          <Link to={{ pathname: generatePath(AppRoute.ROOM, { id }) }}>{title}</Link>
-        </h2>
+        <PlaceName id={id} title={title} />
         <p className="place-card__type">{type}</p>
       </div>
     </article>
