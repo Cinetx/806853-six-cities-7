@@ -1,15 +1,22 @@
 import React, {useRef, useState} from 'react';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import {sendMessage} from '../../store/api-action';
-import {ActionCreator} from '../../store/action';
+import {ActionCreator, commentSend} from '../../store/action';
 import PropTypes from 'prop-types';
 
-function ReviewForm({id, submitReview}) {
+function ReviewForm({id}) {
 
   const [comment, setComment] = useState({
     review: '',
     rating: 0,
   });
+
+  const dispatch = useDispatch();
+
+  const submitReview = (userComment, userRating, offerId) => {
+    dispatch(sendMessage(userComment, userRating, offerId));
+    dispatch(commentSend({userComment, userRating}));
+  };
 
   const textAreaRef = useRef();
 
@@ -18,6 +25,7 @@ function ReviewForm({id, submitReview}) {
     submitReview(comment.review, comment.rating, id);
     evt.target.reset();
     textAreaRef.current.value = '';
+    setComment('');
   };
 
   const onChange = (evt) => {
@@ -88,16 +96,6 @@ function ReviewForm({id, submitReview}) {
 
 ReviewForm.propTypes = {
   id: PropTypes.number.isRequired,
-  submitReview: PropTypes.func.isRequired,
 };
 
-
-const mapDispatchToProps = (dispatch) => ({
-  submitReview(comment, rating, id) {
-    dispatch(sendMessage(comment, rating, id));
-    dispatch(ActionCreator.commentSend({comment, rating}));
-  },
-});
-
-
-export default connect(null, mapDispatchToProps)(ReviewForm);
+export default ReviewForm;

@@ -5,7 +5,6 @@ import cityPropsType from '../../prop-types/city';
 
 function LocationList(props) {
   const {cityList, activeCity, cityChange} = props;
-
   return (
     <ul className="locations__list tabs__list">
       {cityList.map((city)=> (<LocationItem cityChange={cityChange} activeCity={activeCity} city={city} key={city.name}/>),

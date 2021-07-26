@@ -67,4 +67,14 @@ export const adaptToClientReviews = (review) =>
     },
   }));
 
+export const adaptToCliendUser = (user) =>
+  (Object.assign({}, user, {
+    avatarUrl: user.avatar_url,
+    email: user.email,
+    id: user.id,
+    isPro: user.is_pro,
+    name: user.name,
+    token: user.token,
+  }));
+
 export const isCheckedAuth = (authorizationStatus) => authorizationStatus === AuthorizationStatus.UNKNOWN;

@@ -1,14 +1,17 @@
 import React, {useRef} from 'react';
 import Logo from '../../logo/logo';
-import {connect} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import {login} from '../../../store/api-action';
-import PropTypes from 'prop-types';
 
-function LoginScreen(props) {
-  const {onSubmit} = props;
+function LoginScreen() {
 
   const loginRef = useRef();
   const passwordRef = useRef();
+
+  const dispatch = useDispatch();
+  const onSubmit = (authData) => {
+    dispatch(login(authData));
+  };
 
   const handlerSubmit = (evt) => {
     evt.preventDefault();
@@ -94,14 +97,4 @@ function LoginScreen(props) {
   );
 }
 
-LoginScreen.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(login(authData));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(LoginScreen);
+export default LoginScreen;

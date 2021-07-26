@@ -1,39 +1,74 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import reviewsPropsType from '../../../prop-types/reviews';
 import NearPlacesList from '../../near-places/near-places-list';
-import offerPropsType from '../../../prop-types/offer';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import PageHeader from '../../wrapper/page-header/page-header';
 import {fetchActiveOffer, fetchOffersNearbyList, fetchReviewsList} from '../../../store/api-action';
 import Property from '../../property/property';
-import commentPropsType from '../../../prop-types/comment';
+import {
+  getActiveOffer,
+  getDataLoaded,
+  getDataOfferLoaded,
+  getOffers,
+  getReviews,
+  getSelectedOffer
+} from '../../../store/data-loaded/selectors';
+import {getAuthorizationStatus} from '../../../store/user/selectors';
+import {getComment} from '../../../store/data-send/selectors';
+import {showActiveOffer} from '../../../store/action';
 
 function RoomScreen(props) {
 
   const {
-    reviews,
-    offers,
-    selectedOffer,
-    isDataLoaded,
-    isDataOfferLoaded,
-    getReviewsList,
-    getNearbyOffersList,
-    getOffer,
-    authorizationStatus,
     offerId,
-    comment,
   } = props;
 
+  const reviews = useSelector(getReviews),
+    offers = useSelector(getOffers),
+    selectedOffer = useSelector(getSelectedOffer),
+    isDataLoaded = useSelector(getDataLoaded),
+    isDataOfferLoaded = useSelector(getDataOfferLoaded),
+    authorizationStatus = useSelector(getAuthorizationStatus),
+    comment = useSelector(getComment),
+    activeOffer = useSelector(getActiveOffer);
+
+  const dispatch = useDispatch();
+
+  const handlerReviewsList = (id) => {
+    dispatch(fetchReviewsList(id));
+  };
+
+  const handlerActiveOffer = (id) => {
+    dispatch(fetchActiveOffer(id));
+  };
+
+  const handlerNearbyOffersList = (id) => {
+    dispatch(fetchOffersNearbyList(id));
+  };
+
+  const handlerShowActiveOffer = (id) => {
+    dispatch(showActiveOffer(id));
+  };
+
   useEffect(() => {
-    getOffer(offerId);
-    getReviewsList(offerId);
-    getNearbyOffersList(offerId);
+    handlerActiveOffer(offerId);
+    handlerReviewsList(offerId);
+    handlerNearbyOffersList(offerId);
   }, [isDataLoaded, offerId]);
 
   useEffect(() => {
-    getReviewsList(offerId);
+    handlerReviewsList(offerId);
   }, [comment]);
+
+  const onOfferMouseEnter = useCallback(
+    (id) => handlerShowActiveOffer(id),
+    [],
+  );
+
+  const onOfferMouseLeave = useCallback(
+    () => handlerShowActiveOffer(null),
+    [],
+  );
 
   return (
     <div className="page">
@@ -46,10 +81,15 @@ function RoomScreen(props) {
           reviews={reviews}
           offers={offers}
           authorizationStatus={authorizationStatus}
+          activeOffer={activeOffer}
         />
 
         <div className="container">
-          <NearPlacesList offers={offers}/>
+          <NearPlacesList
+            offers={offers}
+            onOfferMouseEnter={onOfferMouseEnter}
+            onOfferMouseLeave={onOfferMouseLeave}
+          />
         </div>
       </main>
 
@@ -58,44 +98,7 @@ function RoomScreen(props) {
 }
 
 RoomScreen.propTypes = {
-  offers: PropTypes.arrayOf(offerPropsType).isRequired,
-  reviews: PropTypes.arrayOf(reviewsPropsType).isRequired,
-  selectedOffer: PropTypes.object.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
-  isDataOfferLoaded: PropTypes.bool.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  getReviewsList: PropTypes.func.isRequired,
-  getOffer: PropTypes.func.isRequired,
-  getNearbyOffersList: PropTypes.func.isRequired,
-  comment: commentPropsType,
   offerId: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  isDataLoaded: state.isDataLoaded,
-  authorizationStatus: state.authorizationStatus,
-  reviews: state.reviews,
-  activeOffer: state.activeOffer,
-  selectedOffer: state.selectedOffer,
-  isDataOfferLoaded: state.isDataOfferLoaded,
-  comment: state.comment,
-});
-
-
-const mapDispatchToProps = (dispatch) => ({
-  getReviewsList(activeOffer) {
-    dispatch(fetchReviewsList(activeOffer));
-  },
-
-  getOffer(offerId) {
-    dispatch(fetchActiveOffer(offerId));
-  },
-
-  getNearbyOffersList(offerId) {
-    dispatch(fetchOffersNearbyList(offerId));
-  },
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(RoomScreen);
+export default RoomScreen;

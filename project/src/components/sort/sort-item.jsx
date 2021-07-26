@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import sortPropsType from '../../prop-types/sort';
 
 function SortItem(props) {
-  const {sort, sortTypeChange, sortType, sortMenuOpen} = props;
+  const {sort, handlerSortTypeChange, sortType, handlerSortMenuOpen} = props;
 
   const placeOptionClass = 'places__option';
   const placeOptionClassActive = 'places__option places__option--active';
@@ -11,8 +11,8 @@ function SortItem(props) {
   return (
     <li
       onClick={() => {
-        sortTypeChange(sort.type);
-        sortMenuOpen(false);
+        handlerSortTypeChange(sort.type);
+        handlerSortMenuOpen(false);
       }}
       className={(sortType === sort.type ? placeOptionClassActive : placeOptionClass)} tabIndex="0"
     >
@@ -23,9 +23,9 @@ function SortItem(props) {
 
 SortItem.propTypes = {
   sort: sortPropsType,
-  sortTypeChange: PropTypes.func.isRequired,
+  handlerSortTypeChange: PropTypes.func.isRequired,
   sortType: PropTypes.string.isRequired,
-  sortMenuOpen: PropTypes.func.isRequired,
+  handlerSortMenuOpen: PropTypes.func.isRequired,
 };
 
 export default SortItem;

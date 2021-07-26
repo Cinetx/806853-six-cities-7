@@ -1,3 +1,5 @@
+import {createAction} from '@reduxjs/toolkit';
+
 export const ActionType = {
   CITY_CHANGE: 'CITY_CHANGE',
   GET_OFFERS: 'GET_OFFERS',
@@ -14,63 +16,15 @@ export const ActionType = {
   COMMENT_SEND: 'COMMENT_CHANGE',
 };
 
-export const ActionCreator = {
-  cityChange: (currentCity) => ({
-    type: ActionType.CITY_CHANGE,
-    payload: currentCity,
-  }),
-
-  sortTypeChange: (sortType) => ({
-    type: ActionType.SORT_TYPE_CHANGE,
-    payload: sortType,
-  }),
-
-  sortMenuOpen: (menu) => ({
-    type: ActionType.SORT_MENU_OPEN,
-    payload: menu,
-  }),
-
-  getActiveOffer: (id) => ({
-    type: ActionType.ACTIVE_OFFER,
-    payload: Number(id),
-  }),
-
-  selectOffer: (offer) => ({
-    type: ActionType.SELECT_OFFER,
-    payload: offer,
-  }),
-
-  loadOffers: (offers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: offers,
-  }),
-
-  loadReviews: (reviews) => ({
-    type: ActionType.LOAD_REVIEWS,
-    payload: reviews,
-  }),
-
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
-
-  login: (email) => ({
-    type: ActionType.LOGIN,
-    payload: email,
-  }),
-
-  logout: () => ({
-    type: ActionType.LOGOUT,
-  }),
-
-  redirectToRoute: (url) => ({
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: url,
-  }),
-
-  commentSend: (comment) => ({
-    type: ActionType.COMMENT_SEND,
-    payload: comment,
-  }),
-};
+export const cityChange = createAction(ActionType.CITY_CHANGE, (currentCity)=> ({payload: currentCity}));
+export const sortTypeChange = createAction(ActionType.SORT_TYPE_CHANGE, (sortType)=>({payload: sortType}));
+export const sortMenuOpen = createAction(ActionType.SORT_MENU_OPEN, (menu)=>({payload: menu}));
+export const showActiveOffer = createAction(ActionType.ACTIVE_OFFER, (id)=> ({payload: Number(id)}));
+export const loadSelectOffer = createAction(ActionType.SELECT_OFFER, (offer)=>({payload: offer}));
+export const loadOffers = createAction(ActionType.LOAD_OFFERS, (offers)=> ({payload: offers}));
+export const loadReviews = createAction(ActionType.LOAD_REVIEWS, (reviews)=>({payload: reviews}));
+export const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status)=>({payload: status}));
+export const loginUser = createAction(ActionType.LOGIN, (user)=> ({payload: user}));
+export const logoutUser = createAction(ActionType.LOGOUT);
+export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url)=>({payload: url}));
+export const commentSend = createAction(ActionType.COMMENT_SEND, (comment)=>({payload: comment}));

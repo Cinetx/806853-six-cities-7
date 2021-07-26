@@ -4,7 +4,7 @@ import SortItem from './sort-item';
 import PropTypes from 'prop-types';
 
 function SortList(props) {
-  const {sortMenuIsOpen, sortType, sortMenuOpen, sortTypeChange} = props;
+  const {sortMenuIsOpen, sortType, handlerSortMenuOpen, handlerSortTypeChange} = props;
 
   const menuClass = 'places__options places__options--custom';
   const menuClassOpen = 'places__options places__options--custom places__options--opened';
@@ -15,8 +15,8 @@ function SortList(props) {
         (
           <SortItem
             sortType={sortType}
-            sortTypeChange={sortTypeChange}
-            sortMenuOpen={sortMenuOpen}
+            handlerSortTypeChange={handlerSortTypeChange}
+            handlerSortMenuOpen={handlerSortMenuOpen}
             sort={sort}
             key={sort.type}
           />
@@ -28,9 +28,9 @@ function SortList(props) {
 
 SortList.propTypes = {
   sortType: PropTypes.string.isRequired,
-  sortTypeChange: PropTypes.func.isRequired,
+  handlerSortTypeChange: PropTypes.func.isRequired,
   sortMenuIsOpen: PropTypes.bool.isRequired,
-  sortMenuOpen: PropTypes.func.isRequired,
+  handlerSortMenuOpen: PropTypes.func.isRequired,
 };
 
 export default SortList;

@@ -3,14 +3,15 @@ import RatingElement from '../wrapper/rating/rating';
 import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 import offerPropsType from '../../prop-types/offer';
 import PlaceName from '../wrapper/place-name/place-name';
+import PropTypes from 'prop-types';
 
-function NearPlace({offer}) {
-
+function NearPlace(props) {
+  const {onOfferMouseEnter, onOfferMouseLeave, offer} = props;
   const {title, price, rating, isFavorite, type, previewImage, id} = offer;
 
 
   return (
-    <article className="near-places__card place-card">
+    <article onMouseEnter={() => {onOfferMouseEnter(id);}} onMouseLeave={onOfferMouseLeave} className="near-places__card place-card">
       <div className="near-places__image-wrapper place-card__image-wrapper">
         <a href="/#">
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
@@ -40,5 +41,7 @@ function NearPlace({offer}) {
 
 NearPlace.propTypes = {
   offer: offerPropsType,
+  onOfferMouseEnter: PropTypes.func.isRequired,
+  onOfferMouseLeave: PropTypes.func.isRequired,
 };
 export default NearPlace;

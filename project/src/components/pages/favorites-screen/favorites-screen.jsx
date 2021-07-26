@@ -1,45 +1,27 @@
 import React, {useEffect} from 'react';
 import CardListFavorite from '../../card-favorite/card-list-favorite';
-import Logo from '../../logo/logo';
-import PropTypes from 'prop-types';
-import offerPropsType from '../../../prop-types/offer';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {fetchOffersList} from '../../../store/api-action';
+import PageHeader from '../../wrapper/page-header/page-header';
+import {getDataLoaded, getFavoritesOffers} from '../../../store/data-loaded/selectors';
 
-function FavoritesScreen(props) {
-  const {offers, getOffersList, isDataLoaded} = props;
+function FavoritesScreen() {
+
+  const isDataLoaded = useSelector(getDataLoaded);
+  const offers = useSelector(getFavoritesOffers);
+  const dispatch = useDispatch();
+
+  const handlerOffersList = ()=>{
+    dispatch(fetchOffersList());
+  };
 
   useEffect(()=>{
-    getOffersList();
+    handlerOffersList();
   },[isDataLoaded]);
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo />
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="/#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="/#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <PageHeader/>
 
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
@@ -58,24 +40,4 @@ function FavoritesScreen(props) {
   );
 }
 
-FavoritesScreen.propTypes = {
-  offers: PropTypes.arrayOf(offerPropsType).isRequired,
-  getOffersList: PropTypes.func.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: state.offers,
-  isDataLoaded: state.isDataLoaded,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-
-  getOffersList(){
-    dispatch(fetchOffersList());
-  },
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(FavoritesScreen);
+export default FavoritesScreen;

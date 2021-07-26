@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import offerPropsType from '../../prop-types/offer';
 import {filterOffers} from '../../utils/filter';
 
-
 function CardListFavorite(props) {
   const {offers} = props;
-  const uniqueCity = [...new Set(offers.filter((offer)=> offer.isFavorite).map((item) => item.city.name))];
+
+  const uniqueCity = [...new Set(offers.map((item) => item.city.name))];
 
   return (
     <ul className="favorites__list">
