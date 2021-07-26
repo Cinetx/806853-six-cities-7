@@ -1,6 +1,6 @@
 import {DEFAULT_SORT} from '../../const';
 import {sortMenuOpen, sortTypeChange} from '../action';
-import {createReducer} from '@reduxjs/toolkit'
+import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
   sortType: DEFAULT_SORT,

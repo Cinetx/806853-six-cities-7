@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
-import {connect, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {sendMessage} from '../../store/api-action';
-import {ActionCreator, commentSend} from '../../store/action';
+import {commentSend} from '../../store/action';
 import PropTypes from 'prop-types';
 
 function ReviewForm({id}) {
