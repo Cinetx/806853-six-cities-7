@@ -4,6 +4,7 @@ import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 import offerPropsType from '../../prop-types/offer';
 import PlaceName from '../wrapper/place-name/place-name';
 import PropTypes from 'prop-types';
+import {ButtonFavoriteStyleType} from '../../const';
 
 function NearPlace(props) {
   const {onOfferMouseEnter, onOfferMouseLeave, offer} = props;
@@ -23,7 +24,7 @@ function NearPlace(props) {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <ButtonFavorite isFavorite={isFavorite} />
+          <ButtonFavorite isFavorite={isFavorite} id={id} buttonFavoriteStyle={ButtonFavoriteStyleType.normal}/>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

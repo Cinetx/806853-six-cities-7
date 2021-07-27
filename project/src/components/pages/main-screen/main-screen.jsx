@@ -15,6 +15,7 @@ import {
   getDataLoaded,
   getSortAndFilterOffers
 } from '../../../store/data-loaded/selectors';
+import MainEmpty from '../../main-empty/main-empty';
 
 function MainScreen(props) {
   const {
@@ -55,6 +56,7 @@ function MainScreen(props) {
     [],
   );
 
+
   return (
     <div className="page page--gray page--main">
       <PageHeader/>
@@ -66,32 +68,33 @@ function MainScreen(props) {
             <LocationList activeCity={city} cityList={cityList} cityChange={handlerCityChange}/>
           </section>
         </div>
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
-              <Sort/>
-              <div className="cities__places-list places__list tabs__content">
-                <CardList
-                  isDataLoaded={isDataLoaded}
-                  offers={offers}
-                  onOfferMouseEnter={onOfferMouseEnter}
-                  onOfferMouseLeave={onOfferMouseLeave}
-                />
-              </div>
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map
-                  city={city}
-                  offers={offers}
-                  activeOffer={activeOffer}
-                />
+        {(offers.length === 0 && isDataLoaded === true) ? <MainEmpty/> :
+          <div className="cities">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+                <Sort/>
+                <div className="cities__places-list places__list tabs__content">
+                  <CardList
+                    isDataLoaded={isDataLoaded}
+                    offers={offers}
+                    onOfferMouseEnter={onOfferMouseEnter}
+                    onOfferMouseLeave={onOfferMouseLeave}
+                  />
+                </div>
               </section>
+              <div className="cities__right-section">
+                <section className="cities__map map">
+                  <Map
+                    city={city}
+                    offers={offers}
+                    activeOffer={activeOffer}
+                  />
+                </section>
+              </div>
             </div>
-          </div>
-        </div>
+          </div>}
       </main>
     </div>
   );

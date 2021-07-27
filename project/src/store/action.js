@@ -14,6 +14,7 @@ export const ActionType = {
   LOGOUT: 'user/logout',
   REDIRECT_TO_ROUTE: 'REDIRECT_TO_ROUTE',
   COMMENT_SEND: 'COMMENT_CHANGE',
+  FAVORITE_STATUS_CHANGE: 'FAVORITE_STATUS_CHANGE',
 };
 
 export const cityChange = createAction(ActionType.CITY_CHANGE, (currentCity)=> ({payload: currentCity}));
@@ -28,3 +29,4 @@ export const loginUser = createAction(ActionType.LOGIN, (user)=> ({payload: user
 export const logoutUser = createAction(ActionType.LOGOUT);
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url)=>({payload: url}));
 export const commentSend = createAction(ActionType.COMMENT_SEND, (comment)=>({payload: comment}));
+export const changeOfferFavoriteStatus = createAction(ActionType.FAVORITE_STATUS_CHANGE, (id)=>({payload: id}));

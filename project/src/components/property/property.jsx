@@ -5,12 +5,12 @@ import ReviewsList from '../reviews/reviews-list';
 import PropTypes from 'prop-types';
 import reviewsPropsType from '../../prop-types/reviews';
 import ReviewForm from '../review-form/review-form';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, ButtonFavoriteStyleType} from '../../const';
 import cityPropsType from '../../prop-types/city';
 import offerPropsType from '../../prop-types/offer';
 import RatingElement from '../wrapper/rating/rating';
 import withLoad from '../../hoc/withLoad/withLoad';
-
+import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 
 function Property(props) {
 
@@ -40,9 +40,6 @@ function Property(props) {
   } = selectedOffer;
   const {avatarUrl} = host;
 
-  const favoriteButtonClassName = 'property__bookmark-button button';
-  const favoriteButtonClassNameActive = 'property__bookmark-button property__bookmark-button--active button';
-
   const avatarClassProUser = 'property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper';
   const avatarClass = 'property__avatar-wrapper user__avatar-wrapper';
 
@@ -61,12 +58,7 @@ function Property(props) {
             <h1 className="property__name">
               {title}
             </h1>
-            <button className={isFavorite ? favoriteButtonClassNameActive : favoriteButtonClassName} type="button">
-              <svg className="property__bookmark-icon" width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <ButtonFavorite isFavorite={isFavorite} id={id} buttonFavoriteStyle={ButtonFavoriteStyleType.large} />
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
