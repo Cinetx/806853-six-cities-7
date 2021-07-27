@@ -1,31 +1,59 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import CardList from '../../card-list/card-list';
-import offerPropsType from '../../../prop-types/offer';
 import Map from '../../map/map';
 import cityPropsType from '../../../prop-types/city';
 import LocationList from '../../location/location-list';
-import {filterOffers, sortOffers} from '../../../utils/filter';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../../store/action';
+import {useDispatch, useSelector} from 'react-redux';
+import {showActiveOffer, cityChange} from '../../../store/action';
 import Sort from '../../sort/sort';
 import {fetchOffersList} from '../../../store/api-action';
 import PageHeader from '../../wrapper/page-header/page-header';
+import {
+  getCity,
+  getActiveOffer,
+  getDataLoaded,
+  getSortAndFilterOffers
+} from '../../../store/data-loaded/selectors';
 
 function MainScreen(props) {
-  const {offers, city, cityList, cityChange, activeOffer, getActiveOffer, isDataLoaded, getOffersList} = props;
+  const {
+    cityList,
+  } = props;
+
+  const offers = useSelector(getSortAndFilterOffers),
+    city = useSelector(getCity),
+    isDataLoaded = useSelector(getDataLoaded),
+    activeOffer = useSelector(getActiveOffer);
+
+  const dispatch = useDispatch();
+
+  const handlerCityChange = (toCity) => {
+    dispatch(cityChange(toCity));
+  };
+
+  const handlerActiveOffer = (id) => {
+    dispatch(showActiveOffer(id));
+  };
+
+  const handlerOffersList = () => {
+    dispatch(fetchOffersList());
+  };
 
   useEffect(() => {
-    getOffersList();
+    handlerOffersList();
+
   }, [isDataLoaded]);
 
-  const onOfferMouseEnter = (id) => {
-    getActiveOffer(id);
-  };
+  const onOfferMouseEnter = useCallback(
+    (id) => handlerActiveOffer(id),
+    [],
+  );
 
-  const onOfferMouseLeave = () => {
-    getActiveOffer(null);
-  };
+  const onOfferMouseLeave = useCallback(
+    () => handlerActiveOffer(null),
+    [],
+  );
 
   return (
     <div className="page page--gray page--main">
@@ -35,7 +63,7 @@ function MainScreen(props) {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <LocationList activeCity={city} cityList={cityList} cityChange={cityChange}/>
+            <LocationList activeCity={city} cityList={cityList} cityChange={handlerCityChange}/>
           </section>
         </div>
         <div className="cities">
@@ -55,7 +83,11 @@ function MainScreen(props) {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={city} offers={offers} activeOffer={activeOffer}/>
+                <Map
+                  city={city}
+                  offers={offers}
+                  activeOffer={activeOffer}
+                />
               </section>
             </div>
           </div>
@@ -66,37 +98,7 @@ function MainScreen(props) {
 }
 
 MainScreen.propTypes = {
-  offers: PropTypes.arrayOf(offerPropsType).isRequired,
   cityList: PropTypes.arrayOf(cityPropsType).isRequired,
-  city: cityPropsType,
-  cityChange: PropTypes.func.isRequired,
-  activeOffer: PropTypes.number,
-  getActiveOffer: PropTypes.func.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
-  getOffersList: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  sortType: state.sort,
-  offers: sortOffers(state.sortType, filterOffers(state.city.name, state.offers)),
-  activeOffer: state.activeOffer,
-  isDataLoaded: state.isDataLoaded,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  cityChange(city) {
-    dispatch(ActionCreator.cityChange(city));
-  },
-
-  getActiveOffer(id) {
-    dispatch(ActionCreator.getActiveOffer(id));
-  },
-
-  getOffersList() {
-    dispatch(fetchOffersList());
-  },
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
+export default MainScreen;

@@ -1,13 +1,19 @@
 import React from 'react';
 import Logo from '../../logo/logo';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AuthorizationStatus, AppRoute} from '../../../const';
-import PropTypes from 'prop-types';
 import {logout} from '../../../store/api-action';
 import {Link} from 'react-router-dom';
+import {getAuthorizationStatus, getUser} from '../../../store/user/selectors';
 
-function PageHeader({authorizationStatus, userEmail, onLogout}) {
+function PageHeader() {
+  const authorizationStatus = useSelector(getAuthorizationStatus),
+    user = useSelector(getUser);
+  const dispatch = useDispatch();
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <header className="header">
       <div className="container">
@@ -19,14 +25,14 @@ function PageHeader({authorizationStatus, userEmail, onLogout}) {
             {(authorizationStatus === AuthorizationStatus.AUTH) ?
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="/#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                  <Link to={AppRoute.FAVORITES} className="header__nav-link header__nav-link--profile">
+                    <div style={{backgroundImage: `url(${  user.avatarUrl  })` }} className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">{userEmail}</span>
-                  </a>
+                    <span className="header__user-name user__name">{user.email}</span>
+                  </Link>
                 </li>
                 <li className="header__nav-item">
-                  <a onClick={onLogout} className="header__nav-link" href="/#">
+                  <a onClick={handleLogout} className="header__nav-link" href="/#">
                     <span className="header__signout">Sign out</span>
                   </a>
                 </li>
@@ -49,21 +55,4 @@ function PageHeader({authorizationStatus, userEmail, onLogout}) {
   );
 }
 
-PageHeader.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  userEmail: PropTypes.string,
-  onLogout: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
-  userEmail: state.userEmail,
-});
-
-
-const mapDispatchToProps = (dispatch) => ({
-  onLogout() {
-    dispatch(logout());
-  },
-});
-export default connect(mapStateToProps, mapDispatchToProps)(PageHeader);
+export default PageHeader;

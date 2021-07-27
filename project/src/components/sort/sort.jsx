@@ -1,11 +1,24 @@
 import React from 'react';
 import SortList from './sort-list';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {useDispatch, useSelector} from 'react-redux';
+import {sortMenuOpen, sortTypeChange} from '../../store/action';
+import {getSortMenuOpen, getSortType} from '../../store/sort/selectors';
 
-function Sort(props) {
-  const {sortType, sortMenuOpen, sortTypeChange, sortMenuIsOpen} = props;
+function Sort() {
+  const
+    sortType = useSelector(getSortType),
+    sortMenuIsOpen = useSelector(getSortMenuOpen);
+
+  const dispatch = useDispatch();
+
+  const handlerSortMenuOpen = (menu) => {
+    dispatch(sortMenuOpen(menu));
+  };
+
+  const handlerSortTypeChange = (toSortType) => {
+    dispatch(sortTypeChange(toSortType));
+  };
+
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -13,7 +26,7 @@ function Sort(props) {
       <span
         onClick={(evt) => {
           evt.preventDefault();
-          sortMenuOpen(!sortMenuIsOpen);
+          handlerSortMenuOpen(!sortMenuIsOpen);
         }}
         className="places__sorting-type" tabIndex="0"
       >&nbsp;{sortType}
@@ -24,33 +37,11 @@ function Sort(props) {
       <SortList
         sortType={sortType}
         sortMenuIsOpen={sortMenuIsOpen}
-        sortTypeChange={sortTypeChange}
-        sortMenuOpen={sortMenuOpen}
+        handlerSortTypeChange={handlerSortTypeChange}
+        handlerSortMenuOpen={handlerSortMenuOpen}
       />
     </form>
   );
 }
 
-Sort.propTypes = {
-  sortType: PropTypes.string.isRequired,
-  sortTypeChange: PropTypes.func.isRequired,
-  sortMenuIsOpen: PropTypes.bool.isRequired,
-  sortMenuOpen: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  sortType: state.sortType,
-  sortMenuIsOpen: state.sortMenuIsOpen,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  sortMenuOpen(menu) {
-    dispatch(ActionCreator.sortMenuOpen(menu));
-  },
-
-  sortTypeChange(sortType) {
-    dispatch(ActionCreator.sortTypeChange(sortType));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sort);
+export default Sort;

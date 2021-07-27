@@ -5,13 +5,23 @@ import offerPropsType from '../../prop-types/offer';
 import withLoad from '../../hoc/withLoad/withLoad';
 
 function CardList(props) {
-  const { offers, onOfferMouseEnter, onOfferMouseLeave} = props;
-
+  const {
+    offers,
+    onOfferMouseEnter,
+    onOfferMouseLeave,
+  } = props;
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers
         .map((offer) =>
-          (<Card key={offer.id} offer={offer} onOfferMouseEnter={onOfferMouseEnter} onOfferMouseLeave={onOfferMouseLeave} />),
+          (
+            <Card
+              key={offer.id}
+              offer={offer}
+              onOfferMouseEnter={onOfferMouseEnter}
+              onOfferMouseLeave={onOfferMouseLeave}
+            />
+          ),
         )}
     </div>
   );

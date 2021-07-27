@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
 import RatingElement from '../wrapper/rating/rating';
 import offerPropsType from '../../prop-types/offer';
@@ -47,4 +47,4 @@ Card.propTypes = {
   onOfferMouseLeave: PropTypes.func.isRequired,
 };
 
-export default Card;
+export default memo(Card);
