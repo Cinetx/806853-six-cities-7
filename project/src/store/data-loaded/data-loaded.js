@@ -1,4 +1,11 @@
-import {cityChange, loadOffers, loadReviews, loadSelectOffer, showActiveOffer} from '../action';
+import {
+  cityChange,
+  loadOffers,
+  loadReviews,
+  loadSelectOffer,
+  showActiveOffer,
+  changeOfferFavoriteStatus
+} from '../action';
 import {DEFAULT_CITY} from '../../const';
 import {createReducer} from '@reduxjs/toolkit';
 
@@ -29,6 +36,16 @@ const dataLoaded = createReducer(initialState, (builder) => {
     })
     .addCase(showActiveOffer, (state, action) => {
       state.activeOffer = action.payload;
+    })
+    .addCase(changeOfferFavoriteStatus, (state, action) => {
+      const offer = state.offers.find((item) => item.id === action.payload);
+      if (offer) {
+        offer.isFavorite = !offer.isFavorite;
+      }
+
+      if (action.payload === state.selectedOffer.id) {
+        state.selectedOffer.isFavorite = !state.selectedOffer.isFavorite;
+      }
     })
     .addCase(cityChange, (state, action) => {
       state.city = action.payload;

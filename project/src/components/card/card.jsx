@@ -4,6 +4,7 @@ import RatingElement from '../wrapper/rating/rating';
 import offerPropsType from '../../prop-types/offer';
 import PropTypes from 'prop-types';
 import PlaceName from '../wrapper/place-name/place-name';
+import {ButtonFavoriteStyleType} from '../../const';
 
 function Card(props) {
 
@@ -27,7 +28,7 @@ function Card(props) {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <ButtonFavorite isFavorite={isFavorite}/>
+          <ButtonFavorite isFavorite={isFavorite} id={id} buttonFavoriteStyle={ButtonFavoriteStyleType.normal}/>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

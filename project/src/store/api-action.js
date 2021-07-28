@@ -5,7 +5,7 @@ import {
   requireAuthorization,
   loadSelectOffer,
   loginUser,
-  logoutUser
+  logoutUser, changeOfferFavoriteStatus
 } from './action';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
 import {adaptToCliendUser, adaptToClient, adaptToClientReviews} from '../utils/utils';
@@ -13,6 +13,7 @@ import {adaptToCliendUser, adaptToClient, adaptToClientReviews} from '../utils/u
 export const fetchOffersList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(loadOffers(data.slice().map((offer)=> adaptToClient(offer)))))
+    .catch(()=> dispatch(redirectToRoute(AppRoute.NOT_FOUND)))
 );
 
 export const fetchOffersNearbyList = (offerId) => (dispatch, _getState, api) => (
@@ -55,6 +56,11 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 export const sendMessage = (comment, rating, id) => (dispatch, _getState, api) => (
   api.post(APIRoute.REVIEWS + id, {comment, rating})
     .then(()=> fetchReviewsList(id))
+);
+
+export const addToFavorites = (id, status) => (dispatch, _getState, api) => (
+  api.post(`${APIRoute.FAVORITE + id  }/${  status}`)
+    .then(()=> dispatch(changeOfferFavoriteStatus(id)))
 );
 
 export const logout = () => (dispatch, _getState, api) => (

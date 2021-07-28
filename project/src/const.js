@@ -15,7 +15,7 @@ export const AuthorizationStatus = {
 export const APIRoute = {
   OFFERS: '/hotels/',
   NEARBY: '/nearby',
-  FAVORITE: '/favorite',
+  FAVORITE: '/favorite/',
   REVIEWS: '/comments/',
   LOGIN: '/login',
   LOGOUT: '/logout',
@@ -105,3 +105,16 @@ export const CITY = [
     },
   },
 ];
+
+export const ButtonFavoriteStyleType = {
+  normal: {
+    type: 'place-card',
+    width: 18,
+    height: 19,
+  },
+  large: {
+    type: 'property',
+    width: 31,
+    height: 33,
+  },
+};
