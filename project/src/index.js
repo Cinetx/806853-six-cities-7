@@ -10,7 +10,8 @@ import {AuthorizationStatus} from './const';
 import {checkAuth} from './store/api-action';
 import {redirect} from './store/middleware/redirect';
 import {configureStore} from '@reduxjs/toolkit';
-
+import browserHistory from './browser-history';
+import {Router as BrowserRouter} from 'react-router-dom';
 
 const api = createAPI(() => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)));
 
@@ -29,9 +30,11 @@ store.dispatch(checkAuth());
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        reviews={REVIEWS}
-      />
+      <BrowserRouter history={browserHistory}>
+        <App
+          reviews={REVIEWS}
+        />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));
