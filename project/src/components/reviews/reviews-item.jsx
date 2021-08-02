@@ -1,11 +1,17 @@
 import React from 'react';
 import RatingElement from '../wrapper/rating/rating';
 import reviewsPropsType from '../../prop-types/reviews';
+import {DATE_OPTIONS} from '../../const';
 
 function ReviewsItem({review}) {
 
-  const {comment, user, rating} = review;
+  const {comment, user, rating, date} = review;
   const {name, avatarUrl} = user;
+
+  const reviewDate = new Date(date).toLocaleDateString(DATE_OPTIONS.LOCALES, {
+    year: DATE_OPTIONS.YEAR,
+    month: DATE_OPTIONS.MONTH,
+  });
 
   return (
     <li className="reviews__item">
@@ -22,7 +28,7 @@ function ReviewsItem({review}) {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime="2019-04-24">{reviewDate}</time>
       </div>
     </li>
   );

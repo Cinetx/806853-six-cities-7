@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import CardListFavorite from '../../card-favorite/card-list-favorite';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchOffersList} from '../../../store/api-action';
+import {fetchFavoriteOffers} from '../../../store/api-action';
 import PageHeader from '../../wrapper/page-header/page-header';
 import {getDataLoaded, getFavoritesOffers} from '../../../store/data-loaded/selectors';
 
@@ -12,7 +12,7 @@ function FavoritesScreen() {
   const dispatch = useDispatch();
 
   const handlerOffersList = ()=>{
-    dispatch(fetchOffersList());
+    dispatch(fetchFavoriteOffers());
   };
 
   useEffect(()=>{

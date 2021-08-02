@@ -51,8 +51,8 @@ export const adaptToClient = (offer) => {
 };
 
 
-export const adaptToClientReviews = (review) =>
-  (Object.assign({}, review, {
+export const adaptToClientReviews = (review) => (
+  Object.assign({}, review, {
 
     id: review.id,
     date: review.date,
@@ -65,16 +65,23 @@ export const adaptToClientReviews = (review) =>
       isPro: review.user.is_pro,
       name: review.user.name,
     },
-  }));
+  })
+);
 
-export const adaptToCliendUser = (user) =>
-  (Object.assign({}, user, {
+export const adaptToCliendUser = (user) => {
+  const adaptedUser = Object.assign({}, user, {
     avatarUrl: user.avatar_url,
     email: user.email,
     id: user.id,
     isPro: user.is_pro,
     name: user.name,
     token: user.token,
-  }));
+  });
+
+  delete adaptedUser.avatar_url;
+  delete adaptedUser.is_pro;
+
+  return adaptedUser;
+};
 
 export const isCheckedAuth = (authorizationStatus) => authorizationStatus === AuthorizationStatus.UNKNOWN;

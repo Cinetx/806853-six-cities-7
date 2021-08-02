@@ -1,52 +1,49 @@
 import React from 'react';
-import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
-import {AppRoute, CITY} from '../../const';
+import {AppRoute, AuthorizationStatus, CITY} from '../../const';
 import MainScreen from '../pages/main-screen/main-screen';
 import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
 import LoginScreen from '../pages/login-screen/login-screen';
 import RoomScreen from '../pages/room-screen/room-screen';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../../hoc/private-route/private-route';
-import browserHistory from '../../browser-history';
-
+import {Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter history={browserHistory}>
-      <Switch>
-        <Route exact path={AppRoute.MAIN}>
-          <MainScreen cityList={CITY}/>
-        </Route>
+    <Switch>
+      <Route exact path={AppRoute.MAIN}>
+        <MainScreen cityList={CITY}/>
+      </Route>
 
-        <PrivateRoute
-          exact
-          path={AppRoute.FAVORITES}
-          render={() => <FavoritesScreen/>}
-        >
-        </PrivateRoute>
+      <PrivateRoute
+        exact
+        path={AppRoute.FAVORITES}
+        render={() => <FavoritesScreen/>}
+      >
+      </PrivateRoute>
 
-        <Route
-          exact
-          path={AppRoute.LOGIN}
-        >
-          <LoginScreen/>
-        </Route>
+      <PrivateRoute
+        exact
+        status={AuthorizationStatus.NO_AUTH}
+        path={AppRoute.LOGIN}
+        redirect={AppRoute.MAIN}
+        render={()=> <LoginScreen/>}
+      />
 
-        <Route
-          exact
-          path={AppRoute.ROOM}
-          render={({match}) => {
-            const offerId = match.params.id;
-            return <RoomScreen offerId={offerId} city={CITY[0]}/>;
-          }}
-        />
+      <Route
+        exact
+        path={AppRoute.ROOM}
+        render={({match}) => {
+          const offerId = match.params.id;
+          return <RoomScreen offerId={offerId} city={CITY[0]}/>;
+        }}
+      />
 
-        <Route>
-          <NotFoundScreen/>
-        </Route>
+      <Route>
+        <NotFoundScreen/>
+      </Route>
 
-      </Switch>
-    </BrowserRouter>
+    </Switch>
   );
 }
 
