@@ -1,7 +1,7 @@
-import {dataSend} from './data-send';
+import {sentData} from './sent-data';
 import {ActionType} from '../action';
 
-describe('Reducer: dataSend',
+describe('Reducer: sentData',
   () => {
     const fakeInitialState = {
       comment: {
@@ -20,7 +20,7 @@ describe('Reducer: dataSend',
 
     it('without additional parameters should return initial state',
       () => {
-        expect(dataSend(undefined, {})).toEqual(fakeInitialState);
+        expect(sentData(undefined, {})).toEqual(fakeInitialState);
       });
 
     it('comment send',
@@ -30,7 +30,7 @@ describe('Reducer: dataSend',
           type: ActionType.LOAD_OFFERS,
           payload: comment,
         };
-        expect(dataSend(state, commentSendActions)).toEqual({comment});
+        expect(sentData(state, commentSendActions)).toEqual({comment});
       });
   },
 );

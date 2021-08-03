@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRoute, AuthorizationStatus, CITY} from '../../const';
+import {AppRoute, AuthorizationStatus, CITIES} from '../../const';
 import MainScreen from '../pages/main-screen/main-screen';
 import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
 import LoginScreen from '../pages/login-screen/login-screen';
@@ -12,7 +12,7 @@ function App() {
   return (
     <Switch>
       <Route exact path={AppRoute.MAIN}>
-        <MainScreen cityList={CITY}/>
+        <MainScreen cityList={CITIES}/>
       </Route>
 
       <PrivateRoute
@@ -35,7 +35,7 @@ function App() {
         path={AppRoute.ROOM}
         render={({match}) => {
           const offerId = match.params.id;
-          return <RoomScreen offerId={offerId} city={CITY[0]}/>;
+          return <RoomScreen offerId={offerId} city={CITIES[0]}/>;
         }}
       />
 

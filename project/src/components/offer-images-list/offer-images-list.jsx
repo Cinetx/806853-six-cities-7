@@ -12,7 +12,7 @@ function OfferImagesList({images}) {
 }
 
 OfferImagesList.propTypes = {
-  images: PropTypes.array.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default OfferImagesList;

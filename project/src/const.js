@@ -75,15 +75,7 @@ export const SORT_BY = [
   },
 ];
 
-export const CITY = [
-  {
-    name: 'Amsterdam',
-    location: {
-      lat: 52.37454,
-      lng: 4.897976,
-      zoom: 13,
-    },
-  },
+export const CITIES = [
   {
     name: 'Paris',
     location: {
@@ -108,7 +100,14 @@ export const CITY = [
       zoom: 13,
     },
   },
-
+  {
+    name: 'Amsterdam',
+    location: {
+      lat: 52.37454,
+      lng: 4.897976,
+      zoom: 13,
+    },
+  },
   {
     name: 'Hamburg',
     location: {

@@ -4,6 +4,7 @@ import {Route, Redirect} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus} from '../../store/user/selectors';
+import Spinner from '../../components/wrapper/spinner/spinner';
 
 function PrivateRoute(
   {
@@ -15,16 +16,18 @@ function PrivateRoute(
   }) {
   const authorizationStatus = useSelector(getAuthorizationStatus);
   return (
-    <Route
-      path={path}
-      exact={exact}
-      render={(routeProps) => (
-        authorizationStatus === status
-          ? render(routeProps)
-          : <Redirect to={redirect}/>
-      )}
-    />
+    (authorizationStatus === AuthorizationStatus.UNKNOWN) ? <Spinner/> :
+      <Route
+        path={path}
+        exact={exact}
+        render={(routeProps) => (
+          authorizationStatus === status
+            ? render(routeProps)
+            : <Redirect to={redirect}/>
+        )}
+      />
   );
+
 }
 
 PrivateRoute.propTypes = {

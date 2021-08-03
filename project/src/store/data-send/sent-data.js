@@ -11,7 +11,7 @@ const initialState = {
   isCommentSending: false,
 };
 
-const dataSend = createReducer(initialState, (builder) => {
+const sentData = createReducer(initialState, (builder) => {
   builder
     .addCase(commentSend, (state, action) => {
       state.comment = action.payload;
@@ -27,4 +27,4 @@ const dataSend = createReducer(initialState, (builder) => {
     });
 });
 
-export {dataSend};
+export {sentData};
