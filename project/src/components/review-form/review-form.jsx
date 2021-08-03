@@ -27,8 +27,9 @@ function ReviewForm({id}) {
 
   const textAreaRef = useRef();
 
-  const onSubmitFrom = (evt) => {
+  const handlerSubmitFrom = (evt) => {
     evt.preventDefault();
+    evt.target.reset();
     submitReview(comment.review, comment.rating, id);
   };
 
@@ -47,7 +48,7 @@ function ReviewForm({id}) {
   };
 
   return (
-    <form onSubmit={onSubmitFrom} className="reviews__form form" action="#" method="post">
+    <form onSubmit={handlerSubmitFrom} className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div onChange={onChange} className="reviews__rating-form form__rating">
         {isCommentSendError ? <span className="reviews__error-message">Error message</span> : ''}

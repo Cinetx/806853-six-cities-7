@@ -6,8 +6,6 @@ import offerPropsType from '../../prop-types/offer';
 function NearPlacesList(props) {
   const {
     offers,
-    onOfferMouseEnter,
-    onOfferMouseLeave,
   } = props;
   return (
     <section className="near-places places">
@@ -17,8 +15,6 @@ function NearPlacesList(props) {
           (
             <NearPlace
               offer={offer} key={offer.id}
-              onOfferMouseEnter={onOfferMouseEnter}
-              onOfferMouseLeave={onOfferMouseLeave}
             />
           ),
         )}
@@ -29,8 +25,6 @@ function NearPlacesList(props) {
 
 NearPlacesList.propTypes = {
   offers: PropTypes.arrayOf(offerPropsType).isRequired,
-  onOfferMouseEnter: PropTypes.func.isRequired,
-  onOfferMouseLeave: PropTypes.func.isRequired,
 };
 
 export default NearPlacesList;

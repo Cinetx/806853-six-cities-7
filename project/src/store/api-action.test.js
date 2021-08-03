@@ -10,7 +10,7 @@ import {
   login, sendMessage
 } from './api-action';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
-import {adaptToCliendUser, adaptToClient, adaptToClientReviews} from '../utils/utils';
+import {adaptToClientUser, adaptToClient, adaptToClientReviews} from '../utils/utils';
 
 let api = null;
 
@@ -191,7 +191,7 @@ describe('Async operations',
           });
           expect(dispatch).toHaveBeenNthCalledWith(1, {
             type: ActionType.LOGIN,
-            payload: adaptToCliendUser(user),
+            payload: adaptToClientUser(user),
           });
           expect(dispatch).toHaveBeenNthCalledWith(2, {
             type: ActionType.REQUIRED_AUTHORIZATION,

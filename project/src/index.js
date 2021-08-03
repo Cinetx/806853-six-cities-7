@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-import {REVIEWS} from './mock/reviews';
 import {Provider} from 'react-redux';
 import rootReducer from './store/root-reducer';
 import {createAPI} from './services/api';
@@ -31,9 +30,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter history={browserHistory}>
-        <App
-          reviews={REVIEWS}
-        />
+        <App/>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

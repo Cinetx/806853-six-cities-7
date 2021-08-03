@@ -3,13 +3,13 @@ import {createSelector} from 'reselect';
 import {SORT_TYPE} from '../../const';
 import {getSortType} from '../sort/selectors';
 
-export const getDataLoaded = (state) => state[NameSpace.DATA_LOADED].isDataLoaded;
-export const getDataOfferLoaded = (state) => state[NameSpace.DATA_LOADED].isDataOfferLoaded;
-export const getOffers = (state) => state[NameSpace.DATA_LOADED].offers;
-export const getReviews = (state) => state[NameSpace.DATA_LOADED].reviews;
-export const getSelectedOffer = (state) => state[NameSpace.DATA_LOADED].selectedOffer;
-export const getActiveOffer = (state) => state[NameSpace.DATA_LOADED].activeOffer;
-export const getCity = (state) => state[NameSpace.DATA_LOADED].city;
+export const getDataLoaded = (state) => state[NameSpace.LOADED_DATA].isDataLoaded;
+export const getDataOfferLoaded = (state) => state[NameSpace.LOADED_DATA].isDataOfferLoaded;
+export const getOffers = (state) => state[NameSpace.LOADED_DATA].offers;
+export const getReviews = (state) => state[NameSpace.LOADED_DATA].reviews;
+export const getSelectedOffer = (state) => state[NameSpace.LOADED_DATA].selectedOffer;
+export const getActiveOffer = (state) => state[NameSpace.LOADED_DATA].activeOffer;
+export const getCity = (state) => state[NameSpace.LOADED_DATA].city;
 
 export const getFavoritesOffers = createSelector(
   [getOffers],

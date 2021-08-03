@@ -9,8 +9,7 @@ import {ButtonFavoriteStyleType} from '../../const';
 function Card(props) {
 
   const {onOfferMouseEnter, onOfferMouseLeave, offer} = props;
-  const {title, price, rating, type, isFavorite, isPremium, id, previewImage} = offer;
-
+  const {title, price, type, rating, isFavorite, isPremium, id, previewImage} = offer;
   return (
     <article className="cities__place-card place-card" onMouseEnter={() => {onOfferMouseEnter(id);}} onMouseLeave={onOfferMouseLeave}>
       {isPremium ?

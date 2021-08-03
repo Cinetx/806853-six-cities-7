@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import NearPlacesList from '../../near-places/near-places-list';
 import {useDispatch, useSelector} from 'react-redux';
@@ -15,7 +15,6 @@ import {
 } from '../../../store/data-loaded/selectors';
 import {getAuthorizationStatus} from '../../../store/user/selectors';
 import {getComment} from '../../../store/data-send/selectors';
-import {showActiveOffer} from '../../../store/action';
 
 function RoomScreen(props) {
 
@@ -46,10 +45,6 @@ function RoomScreen(props) {
     dispatch(fetchOffersNearbyList(id));
   };
 
-  const handlerShowActiveOffer = (id) => {
-    dispatch(showActiveOffer(id));
-  };
-
   useEffect(() => {
     handlerActiveOffer(offerId);
     handlerReviewsList(offerId);
@@ -59,16 +54,6 @@ function RoomScreen(props) {
   useEffect(() => {
     handlerReviewsList(offerId);
   }, [comment]);
-
-  const onOfferMouseEnter = useCallback(
-    (id) => handlerShowActiveOffer(id),
-    [],
-  );
-
-  const onOfferMouseLeave = useCallback(
-    () => handlerShowActiveOffer(null),
-    [],
-  );
 
   return (
     <div className="page">
@@ -87,8 +72,6 @@ function RoomScreen(props) {
         <div className="container">
           <NearPlacesList
             offers={offers}
-            onOfferMouseEnter={onOfferMouseEnter}
-            onOfferMouseLeave={onOfferMouseLeave}
           />
         </div>
       </main>

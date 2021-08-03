@@ -1,4 +1,4 @@
-import {dataLoaded} from './data-loaded';
+import {loadedData} from './loaded-data';
 import {DEFAULT_CITY} from '../../const';
 import {ActionType} from '../action';
 
@@ -163,7 +163,7 @@ describe('Reducer: dataLoaded',
 
     it('without additional parameters should return initial state',
       () => {
-        expect(dataLoaded(undefined, {})).toEqual(fakeInitialState);
+        expect(loadedData(undefined, {})).toEqual(fakeInitialState);
       });
 
     it('load offers return offers',
@@ -173,7 +173,7 @@ describe('Reducer: dataLoaded',
           type: ActionType.LOAD_OFFERS,
           payload: offers,
         };
-        expect(dataLoaded(state, loadOffersActions)).toEqual({offers, isDataLoaded: true});
+        expect(loadedData(state, loadOffersActions)).toEqual({offers, isDataLoaded: true});
       });
 
     it('load reviews return reviews',
@@ -183,7 +183,7 @@ describe('Reducer: dataLoaded',
           type: ActionType.LOAD_REVIEWS,
           payload: reviews,
         };
-        expect(dataLoaded(state, loadReviewsActions)).toEqual({reviews, isDataLoaded: true});
+        expect(loadedData(state, loadReviewsActions)).toEqual({reviews, isDataLoaded: true});
       });
 
     it('load id active offer',
@@ -193,7 +193,7 @@ describe('Reducer: dataLoaded',
           type: ActionType.ACTIVE_OFFER,
           payload: offer.id,
         };
-        expect(dataLoaded(state, showActiveOfferActions)).toEqual({activeOffer: offer.id});
+        expect(loadedData(state, showActiveOfferActions)).toEqual({activeOffer: offer.id});
       });
 
     it('change favorite status offer',
@@ -203,7 +203,7 @@ describe('Reducer: dataLoaded',
           type: ActionType.FAVORITE_STATUS_CHANGE,
           payload: offer.isFavorite,
         };
-        expect(dataLoaded(state, changeOfferFavoriteStatusActions))
+        expect(loadedData(state, changeOfferFavoriteStatusActions))
           .toEqual({offers: offers, selectedOffer: offer});
       });
 
@@ -214,7 +214,7 @@ describe('Reducer: dataLoaded',
           type: ActionType.CITY_CHANGE,
           payload: city,
         };
-        expect(dataLoaded(state, cityChangeActions)).toEqual({city, sortMenuIsOpen: false});
+        expect(loadedData(state, cityChangeActions)).toEqual({city, sortMenuIsOpen: false});
       });
   },
 );

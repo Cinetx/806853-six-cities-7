@@ -8,7 +8,7 @@ import {
   logoutUser, changeOfferFavoriteStatus, setCommentSendSuccess, setCommentSendError, setCommentSending
 } from './action';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
-import {adaptToCliendUser, adaptToClient, adaptToClientReviews} from '../utils/utils';
+import {adaptToClientUser, adaptToClient, adaptToClientReviews} from '../utils/utils';
 
 export const fetchOffersList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
@@ -36,14 +36,14 @@ export const fetchActiveOffer = (offerId) => (dispatch, _getState, api) => (
 
 export const fetchReviewsList = (offerId) => (dispatch, _getState, api) => (
   api.get(APIRoute.REVIEWS + offerId)
-    .then(({data}) => dispatch(loadReviews(data.slice().map((review)=> adaptToClientReviews(review)))))
+    .then(({data}) => dispatch(loadReviews(data.map((review)=> adaptToClientReviews(review)))))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then(({data}) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(loginUser(adaptToCliendUser(data)));
+      dispatch(loginUser(adaptToClientUser(data)));
     })
     .catch(() => {})
 );
@@ -52,11 +52,10 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
   api.post(APIRoute.LOGIN, {email, password})
     .then(({data}) => {
       localStorage.setItem('token', data.token);
-      dispatch(loginUser(adaptToCliendUser(data)));
+      dispatch(loginUser(adaptToClientUser(data)));
 
     })
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-    .then(()=> dispatch(redirectToRoute(AppRoute.MAIN)))
 );
 
 export const sendMessage = (comment, rating, id) => (dispatch, _getState, api) => {
@@ -64,13 +63,14 @@ export const sendMessage = (comment, rating, id) => (dispatch, _getState, api) =
   dispatch(setCommentSendSuccess(false));
   dispatch(setCommentSendError(false));
   return api.post(APIRoute.REVIEWS + id, {comment, rating})
-    .then(()=> fetchReviewsList(id))
+    // .then(()=> fetchReviewsList(id))
     .then(()=> {
       dispatch(setCommentSendSuccess(true));
       dispatch(setCommentSendError(false));
       dispatch(setCommentSending(false));
+      fetchReviewsList(id);
     })
-    .catch((error)=> {
+    .catch(()=> {
       dispatch(setCommentSendSuccess(false));
       dispatch(setCommentSendError(true));
       dispatch(setCommentSending(false));

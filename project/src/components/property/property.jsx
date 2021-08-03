@@ -19,7 +19,6 @@ function Property(props) {
     reviews,
     authorizationStatus,
     offers,
-    activeOffer,
   } = props;
 
 
@@ -126,7 +125,7 @@ function Property(props) {
       </div>
 
       <section className="property__map map">
-        <Map city={city} offers={offers} activeOffer={activeOffer}/>
+        <Map city={city} offers={[...offers, selectedOffer]} activeOffer={selectedOffer.id}/>
       </section>
 
     </section>
@@ -140,7 +139,6 @@ Property.propTypes = {
   selectedOffer: offerPropsType,
   city: cityPropsType,
   authorizationStatus: PropTypes.string.isRequired,
-  activeOffer: PropTypes.number,
 };
 
 export default withLoad(Property);

@@ -9,13 +9,13 @@ function LoginScreen() {
   const passwordRef = useRef();
 
   const dispatch = useDispatch();
-  const onSubmit = (authData) => {
+  const handlerLogin = (authData) => {
     dispatch(login(authData));
   };
 
   const handlerSubmit = (evt) => {
     evt.preventDefault();
-    onSubmit({
+    handlerLogin({
       login: loginRef.current.value,
       password: passwordRef.current.value,
     });
