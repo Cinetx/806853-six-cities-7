@@ -12,9 +12,9 @@ import {
   getOffers,
   getReviews,
   getSelectedOffer
-} from '../../../store/data-loaded/selectors';
+} from '../../../store/loaded-data/selectors';
 import {getAuthorizationStatus} from '../../../store/user/selectors';
-import {getComment} from '../../../store/data-send/selectors';
+import {getComment} from '../../../store/sent-data/selectors';
 
 function RoomScreen(props) {
 

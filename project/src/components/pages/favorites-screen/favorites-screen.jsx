@@ -3,7 +3,7 @@ import CardListFavorite from '../../card-favorite/card-list-favorite';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchFavoriteOffers} from '../../../store/api-action';
 import PageHeader from '../../wrapper/page-header/page-header';
-import {getDataLoaded, getFavoritesOffers} from '../../../store/data-loaded/selectors';
+import {getDataLoaded, getFavoritesOffers} from '../../../store/loaded-data/selectors';
 import FavoriteEmpty from '../../favorite-empty/favorite-empty';
 
 function FavoritesScreen() {

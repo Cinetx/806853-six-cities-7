@@ -4,7 +4,7 @@ import {sendMessage} from '../../store/api-action';
 import {commentSend} from '../../store/action';
 import PropTypes from 'prop-types';
 import {MIN_SYMBOLS_IN_REVIEW_FORM} from '../../const';
-import {getIsCommentSendError, getIsCommentSending, getIsCommentSendSuccess} from '../../store/data-send/selectors';
+import {getIsCommentSendError, getIsCommentSending, getIsCommentSendSuccess} from '../../store/sent-data/selectors';
 import './review-form.css';
 
 function ReviewForm({id}) {
