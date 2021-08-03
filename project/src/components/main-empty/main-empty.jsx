@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {getCity} from '../../store/data-loaded/selectors';
+import {getCity} from '../../store/loaded-data/selectors';
 
 function MainEmpty() {
 

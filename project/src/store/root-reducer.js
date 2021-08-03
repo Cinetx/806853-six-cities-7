@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import {sort} from './sort/sort';
-import {loadedData} from './data-loaded/loaded-data';
+import {loadedData} from './loaded-data/loaded-data';
 import {user} from './user/user';
-import {sentData} from './data-send/sent-data';
+import {sentData} from './sent-data/sent-data';
 
 export const NameSpace = {
   LOADED_DATA: 'LOADED_DATA',

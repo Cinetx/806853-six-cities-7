@@ -14,7 +14,7 @@ import {
   getActiveOffer,
   getDataLoaded,
   getSortAndFilterOffers
-} from '../../../store/data-loaded/selectors';
+} from '../../../store/loaded-data/selectors';
 import MainEmpty from '../../main-empty/main-empty';
 
 function MainScreen(props) {
