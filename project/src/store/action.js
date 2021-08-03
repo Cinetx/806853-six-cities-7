@@ -13,8 +13,11 @@ export const ActionType = {
   LOGIN: 'LOGIN',
   LOGOUT: 'user/logout',
   REDIRECT_TO_ROUTE: 'REDIRECT_TO_ROUTE',
-  COMMENT_SEND: 'COMMENT_CHANGE',
+  COMMENT_SEND: 'COMMENT_SEND',
   FAVORITE_STATUS_CHANGE: 'FAVORITE_STATUS_CHANGE',
+  SET_COMMENT_SEND_SUCCESS: 'SET_COMMENT_SEND_SUCCESS',
+  SET_COMMENT_SEND_ERROR: 'SET_COMMENT_SEND_ERROR',
+  COMMENT_SENDING: 'COMMENT_SENDING',
 };
 
 export const cityChange = createAction(ActionType.CITY_CHANGE, (currentCity)=> ({payload: currentCity}));
@@ -30,3 +33,6 @@ export const logoutUser = createAction(ActionType.LOGOUT);
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url)=>({payload: url}));
 export const commentSend = createAction(ActionType.COMMENT_SEND, (comment)=>({payload: comment}));
 export const changeOfferFavoriteStatus = createAction(ActionType.FAVORITE_STATUS_CHANGE, (id)=>({payload: id}));
+export const setCommentSendSuccess = createAction(ActionType.SET_COMMENT_SEND_SUCCESS, (isCommentSendSuccess)=>({payload: isCommentSendSuccess}));
+export const setCommentSendError = createAction(ActionType.SET_COMMENT_SEND_ERROR, (isCommentSendError)=>({payload: isCommentSendError}));
+export const setCommentSending = createAction(ActionType.COMMENT_SENDING, (isCommentSending)=>({payload: isCommentSending}));

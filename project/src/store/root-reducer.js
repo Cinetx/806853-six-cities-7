@@ -1,19 +1,19 @@
 import {combineReducers} from 'redux';
 import {sort} from './sort/sort';
-import {dataLoaded} from './data-loaded/data-loaded';
+import {loadedData} from './data-loaded/loaded-data';
 import {user} from './user/user';
-import {dataSend} from './data-send/data-send';
+import {sentData} from './data-send/sent-data';
 
 export const NameSpace = {
-  DATA_LOADED: 'DATA_LOADED',
-  DATA_SEND: 'DATA_SEND',
+  LOADED_DATA: 'LOADED_DATA',
+  SENT_DATA: 'SENT_DATA',
   USER: 'USER',
   SORT: 'SORT',
 };
 
 export default combineReducers({
-  [NameSpace.DATA_LOADED]: dataLoaded,
-  [NameSpace.DATA_SEND]: dataSend,
+  [NameSpace.LOADED_DATA]: loadedData,
+  [NameSpace.SENT_DATA]: sentData,
   [NameSpace.USER]: user,
   [NameSpace.SORT]: sort,
 });

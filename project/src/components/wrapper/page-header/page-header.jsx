@@ -11,7 +11,8 @@ function PageHeader() {
     user = useSelector(getUser);
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
+  const handleLogout = (evt) => {
+    evt.preventDefault();
     dispatch(logout());
   };
   return (
@@ -26,7 +27,10 @@ function PageHeader() {
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <Link to={AppRoute.FAVORITES} className="header__nav-link header__nav-link--profile">
-                    <div style={{backgroundImage: `url(${  user.avatarUrl  })` }} className="header__avatar-wrapper user__avatar-wrapper">
+                    <div
+                      style={{backgroundImage: `url(${user.avatarUrl})`}}
+                      className="header__avatar-wrapper user__avatar-wrapper"
+                    >
                     </div>
                     <span className="header__user-name user__name">{user.email}</span>
                   </Link>

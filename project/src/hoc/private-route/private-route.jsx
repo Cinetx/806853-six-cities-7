@@ -4,26 +4,38 @@ import {Route, Redirect} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus} from '../../store/user/selectors';
+import Spinner from '../../components/wrapper/spinner/spinner';
 
-function PrivateRoute({render, path, exact}) {
+function PrivateRoute(
+  {
+    render,
+    path,
+    exact,
+    status = AuthorizationStatus.AUTH,
+    redirect = AppRoute.LOGIN,
+  }) {
   const authorizationStatus = useSelector(getAuthorizationStatus);
   return (
-    <Route
-      path={path}
-      exact={exact}
-      render={(routeProps) => (
-        authorizationStatus === AuthorizationStatus.AUTH
-          ? render(routeProps)
-          : <Redirect to={AppRoute.LOGIN} />
-      )}
-    />
+    (authorizationStatus === AuthorizationStatus.UNKNOWN) ? <Spinner/> :
+      <Route
+        path={path}
+        exact={exact}
+        render={(routeProps) => (
+          authorizationStatus === status
+            ? render(routeProps)
+            : <Redirect to={redirect}/>
+        )}
+      />
   );
+
 }
 
 PrivateRoute.propTypes = {
   exact: PropTypes.bool.isRequired,
   path: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
+  redirect: PropTypes.string,
+  status: PropTypes.string,
 };
 
 export default PrivateRoute;

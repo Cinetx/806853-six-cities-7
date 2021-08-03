@@ -1,27 +1,19 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
-import {getAuthorizationStatus} from '../../../store/user/selectors';
+import {useDispatch} from 'react-redux';
+
 import {addToFavorites} from '../../../store/api-action';
-import {AppRoute, AuthorizationStatus} from '../../../const';
-import {redirectToRoute} from '../../../store/action';
+
 
 function ButtonFavorite(props) {
   const {isFavorite, id, buttonFavoriteStyle} = props;
-
-  const authorizationStatus = useSelector(getAuthorizationStatus);
 
   const dispatch = useDispatch();
 
   const handlerAddToFavorites = (evt) => {
     evt.preventDefault();
-    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      dispatch(redirectToRoute(AppRoute.LOGIN));
-    }
-    dispatch(addToFavorites(id, handlerFavoriteStatus()));
+    dispatch(addToFavorites(id, isFavorite));
   };
-
-  const handlerFavoriteStatus = () => isFavorite ? 0 : 1;
 
   const favoriteButtonClassName = `${buttonFavoriteStyle.type}__bookmark-button button`;
   const favoriteButtonClassNameActive = `${buttonFavoriteStyle.type}__bookmark-button button ${buttonFavoriteStyle.type}__bookmark-button--active`;

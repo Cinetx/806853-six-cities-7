@@ -30,6 +30,27 @@ export const DEFAULT_CITY = {
   },
 };
 
+export const MIN_IMAGE_IN_ROOM_PAGE = 0;
+export const MAX_IMAGE_IN_ROOM_PAGE = 6;
+export const MIN_REVIEW_IN_ROOM_PAGE = 0;
+export const MAX_REVIEW_IN_ROOM_PAGE = 10;
+export const MIN_SYMBOLS_IN_REVIEW_FORM = 50;
+
+export const DATE_OPTIONS = {
+  LOCALES: 'en-US',
+  YEAR: 'numeric',
+  MONTH: 'short',
+};
+
+export const DEFAULT_USER = {
+  id: null,
+  name: '',
+  token: '',
+  isPro: false,
+  email: '',
+  avatarUrl: '',
+};
+
 export const DEFAULT_SORT = 'Popular';
 
 export const SORT_TYPE = {
@@ -54,15 +75,7 @@ export const SORT_BY = [
   },
 ];
 
-export const CITY = [
-  {
-    name: 'Amsterdam',
-    location: {
-      lat: 52.37454,
-      lng: 4.897976,
-      zoom: 13,
-    },
-  },
+export const CITIES = [
   {
     name: 'Paris',
     location: {
@@ -87,7 +100,14 @@ export const CITY = [
       zoom: 13,
     },
   },
-
+  {
+    name: 'Amsterdam',
+    location: {
+      lat: 52.37454,
+      lng: 4.897976,
+      zoom: 13,
+    },
+  },
   {
     name: 'Hamburg',
     location: {

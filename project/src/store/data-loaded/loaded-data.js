@@ -20,7 +20,7 @@ const initialState = {
   sortMenuIsOpen: false,
 };
 
-const dataLoaded = createReducer(initialState, (builder) => {
+const loadedData = createReducer(initialState, (builder) => {
   builder
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
@@ -53,4 +53,4 @@ const dataLoaded = createReducer(initialState, (builder) => {
     });
 });
 
-export {dataLoaded};
+export {loadedData};
