@@ -1,8 +1,10 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {addToFavorites} from '../../../store/api-action';
+import {getAuthorizationStatus} from '../../../store/user/selectors';
+import {AuthorizationStatus} from '../../../const';
 
 
 function ButtonFavorite(props) {
@@ -15,13 +17,14 @@ function ButtonFavorite(props) {
     dispatch(addToFavorites(id, isFavorite));
   };
 
+  const authorizationStatus = useSelector(getAuthorizationStatus);
   const favoriteButtonClassName = `${buttonFavoriteStyle.type}__bookmark-button button`;
   const favoriteButtonClassNameActive = `${buttonFavoriteStyle.type}__bookmark-button button ${buttonFavoriteStyle.type}__bookmark-button--active`;
 
   return (
     <button
       onClick={handlerAddToFavorites}
-      className={isFavorite ? favoriteButtonClassNameActive : favoriteButtonClassName}
+      className={(isFavorite && authorizationStatus === AuthorizationStatus.AUTH) ? favoriteButtonClassNameActive : favoriteButtonClassName}
       type="button"
     >
       <svg className={`${buttonFavoriteStyle.type}__bookmark-icon`} width={buttonFavoriteStyle.width} height={buttonFavoriteStyle.height}>
