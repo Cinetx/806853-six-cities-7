@@ -11,7 +11,7 @@ import offerPropsType from '../../prop-types/offer';
 import RatingElement from '../wrapper/rating/rating';
 import withLoad from '../../hoc/withLoad/withLoad';
 import ButtonFavorite from '../wrapper/button-favorite/button-favorite';
-
+import HostAvatar from './img/avatar-angelina.jpg'
 function Property(props) {
 
   const {
@@ -38,6 +38,7 @@ function Property(props) {
     id,
   } = selectedOffer;
   const {avatarUrl} = host;
+  console.log(selectedOffer)
 
   const avatarClassProUser = 'property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper';
   const avatarClass = 'property__avatar-wrapper user__avatar-wrapper';
@@ -96,7 +97,7 @@ function Property(props) {
               <div className={host.isPro ? avatarClassProUser : avatarClass}>
                 <img
                   className="property__avatar user__avatar"
-                  src={avatarUrl}
+                  src={HostAvatar}
                   width="74"
                   height="74"
                   alt="Host avatar"

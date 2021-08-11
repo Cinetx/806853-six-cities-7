@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import offerPropsType from '../../prop-types/offer';
 import cityPropsType from '../../prop-types/city';
 import useMap from '../../mock/hooks/useMap/useMap';
+import ActivePin from './img/pin-active.svg'
+import Pin from './img/pin.svg'
 
 function Map(props) {
   const {city, offers, activeOffer} = props;
@@ -12,13 +14,13 @@ function Map(props) {
   const map = useMap(mapRef, city);
 
   const icon = leaflet.icon({
-    iconUrl: 'img/pin.svg',
+    iconUrl: Pin,
     iconSize: [27, 39],
     iconAnchor: [13, 39],
   });
 
   const iconActive = leaflet.icon({
-    iconUrl: 'img/pin-active.svg',
+    iconUrl: ActivePin,
     iconSize: [27, 39],
     iconAnchor: [13, 39],
   });

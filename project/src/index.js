@@ -10,7 +10,11 @@ import {checkAuth} from './store/api-action';
 import {redirect} from './store/middleware/redirect';
 import {configureStore} from '@reduxjs/toolkit';
 import browserHistory from './browser-history';
-import {Router as BrowserRouter} from 'react-router-dom';
+import './index.css';
+// import { Router as BrowserRouter} from 'react-router-dom';
+import {HashRouter as BrowserRouter} from 'react-router-dom';
+
+
 
 const api = createAPI(() => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)));
 

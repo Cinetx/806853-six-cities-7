@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Route, Redirect} from 'react-router-dom';
+import {Route, Redirect, HashRouter} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus} from '../../store/user/selectors';
@@ -17,7 +17,7 @@ function PrivateRoute(
   const authorizationStatus = useSelector(getAuthorizationStatus);
   return (
     (authorizationStatus === AuthorizationStatus.UNKNOWN) ? <Spinner/> :
-      <Route
+      <HashRouter
         path={path}
         exact={exact}
         render={(routeProps) => (
