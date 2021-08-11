@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.6d183257.chunk.css",
-    "main.js": "/static/js/main.62ab9db1.chunk.js",
-    "main.js.map": "/static/js/main.62ab9db1.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.baaec1ba.js",
-    "runtime-main.js.map": "/static/js/runtime-main.baaec1ba.js.map",
-    "static/css/2.c1e28d34.chunk.css": "/static/css/2.c1e28d34.chunk.css",
-    "static/js/2.553a614f.chunk.js": "/static/js/2.553a614f.chunk.js",
-    "static/js/2.553a614f.chunk.js.map": "/static/js/2.553a614f.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.c1e28d34.chunk.css.map": "/static/css/2.c1e28d34.chunk.css.map",
-    "static/css/main.6d183257.chunk.css.map": "/static/css/main.6d183257.chunk.css.map",
-    "static/js/2.553a614f.chunk.js.LICENSE.txt": "/static/js/2.553a614f.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/static/media/triangle.8cd83f40.svg",
-    "static/media/logo.fe712023.svg": "/static/media/logo.fe712023.svg",
-    "static/media/pin-active.6d8eeee8.svg": "/static/media/pin-active.6d8eeee8.svg",
-    "static/media/pin.e700a64a.svg": "/static/media/pin.e700a64a.svg"
+    "main.css": "/806853-six-cities-7/static/css/main.c0c28da0.chunk.css",
+    "main.js": "/806853-six-cities-7/static/js/main.6aaa3408.chunk.js",
+    "main.js.map": "/806853-six-cities-7/static/js/main.6aaa3408.chunk.js.map",
+    "runtime-main.js": "/806853-six-cities-7/static/js/runtime-main.e24c9848.js",
+    "runtime-main.js.map": "/806853-six-cities-7/static/js/runtime-main.e24c9848.js.map",
+    "static/css/2.c1e28d34.chunk.css": "/806853-six-cities-7/static/css/2.c1e28d34.chunk.css",
+    "static/js/2.46f2bfa6.chunk.js": "/806853-six-cities-7/static/js/2.46f2bfa6.chunk.js",
+    "static/js/2.46f2bfa6.chunk.js.map": "/806853-six-cities-7/static/js/2.46f2bfa6.chunk.js.map",
+    "index.html": "/806853-six-cities-7/index.html",
+    "static/css/2.c1e28d34.chunk.css.map": "/806853-six-cities-7/static/css/2.c1e28d34.chunk.css.map",
+    "static/css/main.c0c28da0.chunk.css.map": "/806853-six-cities-7/static/css/main.c0c28da0.chunk.css.map",
+    "static/js/2.46f2bfa6.chunk.js.LICENSE.txt": "/806853-six-cities-7/static/js/2.46f2bfa6.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/806853-six-cities-7/static/media/triangle.8cd83f40.svg",
+    "static/media/logo.fe712023.svg": "/806853-six-cities-7/static/media/logo.fe712023.svg",
+    "static/media/pin-active.6d8eeee8.svg": "/806853-six-cities-7/static/media/pin-active.6d8eeee8.svg",
+    "static/media/pin.e700a64a.svg": "/806853-six-cities-7/static/media/pin.e700a64a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.baaec1ba.js",
+    "static/js/runtime-main.e24c9848.js",
     "static/css/2.c1e28d34.chunk.css",
-    "static/js/2.553a614f.chunk.js",
-    "static/css/main.6d183257.chunk.css",
-    "static/js/main.62ab9db1.chunk.js"
+    "static/js/2.46f2bfa6.chunk.js",
+    "static/css/main.c0c28da0.chunk.css",
+    "static/js/main.6aaa3408.chunk.js"
   ]
 }
