@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/806853-six-cities-7/static/css/main.c0c28da0.chunk.css",
-    "main.js": "/806853-six-cities-7/static/js/main.f85e54f4.chunk.js",
-    "main.js.map": "/806853-six-cities-7/static/js/main.f85e54f4.chunk.js.map",
-    "runtime-main.js": "/806853-six-cities-7/static/js/runtime-main.e24c9848.js",
-    "runtime-main.js.map": "/806853-six-cities-7/static/js/runtime-main.e24c9848.js.map",
-    "static/css/2.c1e28d34.chunk.css": "/806853-six-cities-7/static/css/2.c1e28d34.chunk.css",
-    "static/js/2.553a614f.chunk.js": "/806853-six-cities-7/static/js/2.553a614f.chunk.js",
-    "static/js/2.553a614f.chunk.js.map": "/806853-six-cities-7/static/js/2.553a614f.chunk.js.map",
-    "index.html": "/806853-six-cities-7/index.html",
-    "static/css/2.c1e28d34.chunk.css.map": "/806853-six-cities-7/static/css/2.c1e28d34.chunk.css.map",
-    "static/css/main.c0c28da0.chunk.css.map": "/806853-six-cities-7/static/css/main.c0c28da0.chunk.css.map",
-    "static/js/2.553a614f.chunk.js.LICENSE.txt": "/806853-six-cities-7/static/js/2.553a614f.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/806853-six-cities-7/static/media/triangle.8cd83f40.svg",
-    "static/media/logo.fe712023.svg": "/806853-six-cities-7/static/media/logo.fe712023.svg",
-    "static/media/pin-active.6d8eeee8.svg": "/806853-six-cities-7/static/media/pin-active.6d8eeee8.svg",
-    "static/media/pin.e700a64a.svg": "/806853-six-cities-7/static/media/pin.e700a64a.svg"
+    "main.css": "/react-six-cities/static/css/main.7f06f7f7.chunk.css",
+    "main.js": "/react-six-cities/static/js/main.eeedd562.chunk.js",
+    "main.js.map": "/react-six-cities/static/js/main.eeedd562.chunk.js.map",
+    "runtime-main.js": "/react-six-cities/static/js/runtime-main.3d6ff386.js",
+    "runtime-main.js.map": "/react-six-cities/static/js/runtime-main.3d6ff386.js.map",
+    "static/css/2.c1e28d34.chunk.css": "/react-six-cities/static/css/2.c1e28d34.chunk.css",
+    "static/js/2.553a614f.chunk.js": "/react-six-cities/static/js/2.553a614f.chunk.js",
+    "static/js/2.553a614f.chunk.js.map": "/react-six-cities/static/js/2.553a614f.chunk.js.map",
+    "index.html": "/react-six-cities/index.html",
+    "static/css/2.c1e28d34.chunk.css.map": "/react-six-cities/static/css/2.c1e28d34.chunk.css.map",
+    "static/css/main.7f06f7f7.chunk.css.map": "/react-six-cities/static/css/main.7f06f7f7.chunk.css.map",
+    "static/js/2.553a614f.chunk.js.LICENSE.txt": "/react-six-cities/static/js/2.553a614f.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/react-six-cities/static/media/triangle.8cd83f40.svg",
+    "static/media/logo.fe712023.svg": "/react-six-cities/static/media/logo.fe712023.svg",
+    "static/media/pin-active.6d8eeee8.svg": "/react-six-cities/static/media/pin-active.6d8eeee8.svg",
+    "static/media/pin.e700a64a.svg": "/react-six-cities/static/media/pin.e700a64a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e24c9848.js",
+    "static/js/runtime-main.3d6ff386.js",
     "static/css/2.c1e28d34.chunk.css",
     "static/js/2.553a614f.chunk.js",
-    "static/css/main.c0c28da0.chunk.css",
-    "static/js/main.f85e54f4.chunk.js"
+    "static/css/main.7f06f7f7.chunk.css",
+    "static/js/main.eeedd562.chunk.js"
   ]
 }
