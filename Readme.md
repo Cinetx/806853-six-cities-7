@@ -11,5 +11,5 @@
 
 ### Памятка
 
-Посмотреть можно здесь: [github pages](https://cinetx.github.io/806853-six-cities-7/).
+Посмотреть можно здесь: [github pages](https://cinetx.github.io/react-six-cities/).
 
